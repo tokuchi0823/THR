@@ -11,6 +11,7 @@
          <% if current_user.admin?%>
           <li><%= link_to "出勤社員一覧", on_duty_path %></li>
          <% end %>
+          <li><%= link_to "ツーリングに参加する", "#" %></li>
          <% if current_user.admin?%>
           <li><%= link_to "拠点情報の修正", bases_path %></li>
          <% end %>
