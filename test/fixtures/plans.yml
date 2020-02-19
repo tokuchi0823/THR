@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  purpose: MyString
+  date: 2020-02-18 10:19:08
+  meeting_place: MyString
+  destination: MyString
+  secretary_id: 1
+
+two:
+  purpose: MyString
+  date: 2020-02-18 10:19:08
+  meeting_place: MyString
+  destination: MyString
+  secretary_id: 1

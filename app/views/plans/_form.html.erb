@@ -1,0 +1,16 @@
+<%= form_with(model: @plan, local: true) do |f| %>
+
+  <%= f.label :purpose, class: "label-#{yield(:class_text)}" %>
+  <%= f.text_field :purpose, class: "form-control" %>
+
+  <%= f.label :date, class: "label-#{yield(:class_text)}" %>
+  <%= f.datetime_field :date, class: "form-control" %>
+  
+  <%= f.label :meeting_place, class: "label-#{yield(:class_text)}" %>
+  <%= f.text_field :meeting_place, class: "form-control" %>
+  
+  <%= f.label:destination, class: "label-#{yield(:class_text)}" %>
+  <%= f.number_field :destination, class: "form-control" %>
+
+  <%= f.submit yield(:button_text), class: "btn btn-primary btn-block btn-#{yield(:class_text)}" %>
+<% end %>

@@ -7,8 +7,14 @@
   <%= f.label :email, class: "label-#{yield(:class_text)}" %>
   <%= f.email_field :email, class: "form-control" %>
   
-  <%= f.label :department, class: "label-#{yield(:class_text)}" %>
-  <%= f.text_field :department, class: "form-control" %>
+  <%= f.label :bike, class: "label-#{yield(:class_text)}" %>
+  <%= f.text_field :bike, class: "form-control" %>
+
+  <%= f.label:displacement, class: "label-#{yield(:class_text)}" %>
+  <%= f.number_field :displacement, class: "form-control" %>
+  
+  <%= f.label:intercom, class: "label-#{yield(:class_text)}" %>
+  <%= f.check_box :intercom, class: "form-control" %>
 
   <%= f.label :password, class: "label-#{yield(:class_text)}" %>
   <%= f.password_field :password, class: "form-control" %>

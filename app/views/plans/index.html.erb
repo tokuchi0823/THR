@@ -1,0 +1,30 @@
+<% provide(:title, 'plan') %>
+<h1>ツーリング企画一覧</h1>
+<div>
+  <table class="table table-bordered table-condensed base-table">
+    <tr>
+      <td></td>
+      <td></td>
+      <td>目的</td>
+      <td>日時</td>
+      <td>幹事</td>
+    </tr>
+  <% @plan.each do |plan| %>
+    <tr>
+      <td><%= link_to "詳細", plan_path(plan) ,class: "btn btn-primary btn-edit"%></td>
+      <% if plan.secretary_id == current_user.id %>
+      <td><%= link_to "削除", plan, method: :delete,
+                data: { confirm: "削除してよろしいですか？" }, class: "btn btn-primary btn-edit"%></td>
+      <% else %>
+      <td></td>
+      <% end %> 
+      <td><%=plan.purpose%></td>
+      <td><%=plan.date%></td>
+      <td><%=User.find(plan.secretary_id).name %></td>
+    </tr>
+  <% end %>
+  </table>
+  <div class="new-point-button-area">
+  <%= link_to "ツーリングを企画する",new_plan_path,class: "btn btn-lg btn-primary btn-add" %>
+  </div>
+</div>

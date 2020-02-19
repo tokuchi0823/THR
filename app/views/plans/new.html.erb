@@ -1,0 +1,28 @@
+<% provide(:title, 'New') %>
+<% provide(:class_text, 'new') %>
+<% provide(:button_text, '新規作成') %>
+<h1>新規ツーリング企画作成</h1>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+  <%= form_with(model: @plan, local: true) do |f| %>
+
+  <%= f.label :purpose, class: "label-#{yield(:class_text)}" %>
+  <%= f.text_field :purpose, class: "form-control" %>
+
+  <%= f.label :date, class: "label-#{yield(:class_text)}" %>
+  <%= f.datetime_field :date, class: "form-control" %>
+  
+  <%= f.label :meeting_place, class: "label-#{yield(:class_text)}" %>
+  <%= f.text_field :meeting_place, class: "form-control" %>
+  
+  <%= f.label:destination, class: "label-#{yield(:class_text)}" %>
+  <%= f.text_field :destination, class: "form-control" %>
+  
+  <%= f.hidden_field :secretary_id, :value => current_user.id%>
+
+  <%= f.submit yield(:button_text), class: "btn btn-primary btn-block btn-#{yield(:class_text)}" %>
+<% end %>
+  </div>
+</div>
+

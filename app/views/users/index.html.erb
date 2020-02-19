@@ -22,25 +22,7 @@
   <div class="alert alert-info" role="alert"><%= flash[:notice] %></div>
 <% end %>
 
-<div>
-  <%= form_tag users_path, method: :post, multipart: true do |f| %>
-    <div class="search_item">
-      <%= button_tag 'ファイルを選択', type: 'button', onclick: "$('#file_input').click();" %>
-      <%= text_field_tag 'filename',"", id: "filename", disabled: true %>
-      <%= file_field_tag 'users_file', id: "file_input", style: "display: none;", onchange: "file_selected($(this));" %>
-    </div>
-    <div>
-      <button type="submit" class="btn btn-primary">CSVをインポート</button>
-    </div>
-  <% end %>
-</div>
 
-<script type="text/javascript">
-  function file_selected(file_field){
-    var filename = $(file_field)[0].files[0].name;
-    $("#filename").val(filename);
-  }
-</script>
    
   <%= will_paginate %>
   <table class="table table-condensed " id="table-users">
@@ -78,29 +60,18 @@
              <%= f.label :email, class: "label-#{yield(:class_text)}" %>
              <%= f.email_field :email, class: "form-control" %>
   
-             <%= f.label :department, class: "label-#{yield(:class_text)}" %>
-             <%= f.text_field :department, class: "form-control" %>
-             
-             <%= f.label :employee_number, class: "label-#{yield(:class_text)}" %>
-             <%= f.text_field :employee_number, class: "form-control" %>
-             
-             <%= f.label :uid, class: "label-#{yield(:class_text)}" %>
-             <%= f.text_field :uid, class: "form-control" %>
-
-             <%= f.label :password, class: "label-#{yield(:class_text)}" %>
-             <%= f.password_field :password, class: "form-control" %>
-             
-             <%= f.label :basic_time, class: "label-#{yield(:class_text)}" %>
-             <%= f.time_field :basic_time, class: 'form-control' %>
-             
-             <%= f.label :designated_work_start_time, class: "label-#{yield(:class_text)}" %>
-             <%= f.time_field :designated_work_start_time, class: 'form-control' %>
-             
-             <%= f.label :designated_work_end_time, class: "label-#{yield(:class_text)}" %>
-             <%= f.time_field :designated_work_end_time, class: 'form-control' %>
-
-
-             <%= f.submit yield(:button_text), class: "btn btn-primary btn-block btn-#{yield(:class_text)}" %>
+            <%= f.label :bike, class: "label-#{yield(:class_text)}" %>
+            <%= f.text_field :bike, class: "form-control" %>
+            
+            <%= f.label:displacement, class: "label-#{yield(:class_text)}" %>
+            <%= f.number_field :displacement, class: "form-control" %>
+            
+            <div>
+              <%= f.label:intercom, class: "label-#{yield(:class_text)}" %>
+              <%= f.check_box :intercom %>
+            </div>
+         
+            <%= f.submit yield(:button_text), class: "btn btn-primary btn-block btn-#{yield(:class_text)}" %>
             <% end %>
           </ul>
          </div>   

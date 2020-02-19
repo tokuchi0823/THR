@@ -1,0 +1,31 @@
+<% provide(:title, @plan.purpose) %>
+<h1><%=@plan.purpose%></h1>
+ <div>
+  <table class="table table-bordered table-condensed table-hover">
+   <thead>
+    <tr>
+     <th>日程</th>
+     <th>集合場所</th>
+     <th>目的地</th>
+     <th>幹事</th>
+    </tr>
+   </thead>
+    <tr>
+      <td><%=@plan.date%></td>
+      <td><%=@plan.meeting_place%></td>
+      <td><%=@plan.destination%></td>
+      <td><%=User.find(@plan.secretary_id).name %></td>
+    </tr>
+  </table>
+  <% if current_user.id == @plan.secretary_id%>
+   <td><%= link_to "修正", edit_plan_path(@plan) ,class: "btn btn-primary btn-edit"%></td>
+  <% else %>
+   <td><%= link_to "参加", edit_plan_path(@plan) ,class: "btn btn-primary btn-edit"%></td>
+  <% end %>
+</div>
+ 
+<!--モーダルウインドウ表示-->
+<div id="edit-zangyo-info" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
+<div id="approval-zangyo-info" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
+<div id="approval-change-info" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
+<div id="approval-one-month-info" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>

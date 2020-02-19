@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20191119145224) do
+ActiveRecord::Schema.define(version: 20200218101908) do
 
   create_table "attendances", force: :cascade do |t|
     t.date "worked_on"
@@ -45,6 +45,16 @@ ActiveRecord::Schema.define(version: 20191119145224) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "plans", force: :cascade do |t|
+    t.string "purpose"
+    t.datetime "date"
+    t.string "meeting_place"
+    t.string "destination"
+    t.integer "secretary_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "name"
     t.string "email"
@@ -61,6 +71,9 @@ ActiveRecord::Schema.define(version: 20191119145224) do
     t.datetime "designated_work_start_time", default: "2020-02-13 00:00:00"
     t.datetime "designated_work_end_time", default: "2020-02-13 09:00:00"
     t.boolean "superior", default: false
+    t.string "bike"
+    t.integer "displacement"
+    t.boolean "intercom", default: false
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
