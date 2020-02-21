@@ -18,6 +18,7 @@ gem 'rounding'
 gem 'activerecord-import'
 gem 'roo'
 gem 'pry-rails'
+gem 'devise'
 
 group :development, :test do
   gem 'sqlite3'

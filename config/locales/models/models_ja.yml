@@ -26,4 +26,9 @@ ja:
           finished_at: 退勤時間
           note: 備考
           user: ユーザーID
+        plan:
+          purpose: 目的
+          date: 日時
+          meeting_place: 集合場所
+          destination: 目的地
           

@@ -19,8 +19,6 @@
   </table>
   <% if current_user.id == @plan.secretary_id%>
    <td><%= link_to "修正", edit_plan_path(@plan) ,class: "btn btn-primary btn-edit"%></td>
-  <% else %>
-   <td><%= link_to "参加", edit_plan_path(@plan) ,class: "btn btn-primary btn-edit"%></td>
   <% end %>
 </div>
  

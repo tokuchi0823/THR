@@ -22,6 +22,8 @@ Rails.application.routes.draw do
   
   resources :plans
   
+  resources :relationships
+  
   resources :users do
     member do
       get 'edit_basic_info'
