@@ -19,7 +19,9 @@
   </table>
   <% if current_user.id == @plan.secretary_id%>
    <td><%= link_to "修正", edit_plan_path(@plan) ,class: "btn btn-primary btn-edit"%></td>
-  <% end %>
+  <% else %>
+   <%= render "sankas/sanka", plan: @plan %>
+   <% end %>
 </div>
  
 <!--モーダルウインドウ表示-->

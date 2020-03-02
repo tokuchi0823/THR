@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200219144604) do
+ActiveRecord::Schema.define(version: 20200225033801) do
 
   create_table "attendances", force: :cascade do |t|
     t.date "worked_on"
@@ -53,6 +53,7 @@ ActiveRecord::Schema.define(version: 20200219144604) do
     t.integer "secretary_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "sankas_count", default: 0, null: false
   end
 
   create_table "relationships", force: :cascade do |t|
@@ -63,6 +64,16 @@ ActiveRecord::Schema.define(version: 20200219144604) do
     t.index ["plan_id"], name: "index_relationships_on_plan_id"
     t.index ["user_id", "plan_id"], name: "index_relationships_on_user_id_and_plan_id", unique: true
     t.index ["user_id"], name: "index_relationships_on_user_id"
+  end
+
+  create_table "sankas", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "plan_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["plan_id"], name: "index_sankas_on_plan_id"
+    t.index ["user_id", "plan_id"], name: "index_sankas_on_user_id_and_plan_id", unique: true
+    t.index ["user_id"], name: "index_sankas_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|

@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
-
+  
+  post '/callback' => 'linebot#callback'  
+  
+  resources :sankas, only: [:create, :destroy]
+  
   get 'basic_pages/basic'
 
   get 'bases/new'

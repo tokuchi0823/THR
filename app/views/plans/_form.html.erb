@@ -10,7 +10,9 @@
   <%= f.text_field :meeting_place, class: "form-control" %>
   
   <%= f.label:destination, class: "label-#{yield(:class_text)}" %>
-  <%= f.number_field :destination, class: "form-control" %>
+  <%= f.text_field :destination, class: "form-control" %>
+  
+  <%= f.hidden_field :secretary_id, :value => current_user.id%>
 
   <%= f.submit yield(:button_text), class: "btn btn-primary btn-block btn-#{yield(:class_text)}" %>
 <% end %>

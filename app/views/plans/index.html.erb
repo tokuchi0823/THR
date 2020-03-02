@@ -1,6 +1,13 @@
 <% provide(:title, 'plan') %>
 <h1>ツーリング企画一覧</h1>
-<div>
+<div class="row">
+  
+  <div class="col-md-4">
+    <p>LINEの友達登録をすると<br>新規企画のお知らせが来ます<br>
+    <a href="https://line.me/R/ti/p/%40595zmbtd>">LINE友達追加はこちら！</a></p>
+   <img class="qrcode" src="/595zmbtd.png" >
+  </div>
+<div class="col-md-7">
   <table class="table table-bordered table-condensed base-table">
     <tr>
       <td></td>
@@ -27,4 +34,5 @@
   <div class="new-point-button-area">
   <%= link_to "ツーリングを企画する",new_plan_path,class: "btn btn-lg btn-primary btn-add" %>
   </div>
+</div>
 </div>

@@ -8,9 +8,9 @@ class SessionsController < ApplicationController
       log_in user
       params[:session][:remember_me] == '1' ? remember(user) : forget(user)
       if current_user.admin?
-       redirect_to root_url
+       redirect_to plans_url
       else
-       redirect_back_or user
+       redirect_to plans_url
       end
     else
       flash.now[:danger] = '認証に失敗しました。'

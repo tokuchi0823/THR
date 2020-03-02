@@ -121,3 +121,11 @@ p {
    color: red;
 }
 
+.qrcode {
+  float: left;
+  width: 50%;
+  margin-top: 10px;
+  -moz-box-sizing:    border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing:         border-box;
+}

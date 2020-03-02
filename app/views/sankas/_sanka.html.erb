@@ -1,0 +1,15 @@
+<% if !current_user?(plan.secretary_id) %>
+    <span class="sanka">
+    <% if plan.sanka?(current_user) %>
+      <%= form_for(plan.sankas.find_by(user_id: current_user.id), method: :delete, remote: true) do |f| %>
+       <%= f.submit "参加キャンセル", class: "btn btn-primary btn-edit" %>
+      <% end %>
+    <% else %>
+      <%= form_for(plan.sankas.build, remote: true) do |f| %>
+        <div><%= hidden_field_tag :plan_id, plan.id %></div>
+           <%= f.submit "参加", class: "btn btn-primary btn-edit" %>
+       　　<%=plan.sankas_count%>
+      <% end %>
+    <% end %>
+  </span>
+<% end %>

@@ -2,7 +2,8 @@
 /* 拠点情報テーブル */
 .base-table {
   vertical-align: middle;
-  text-align: center; }
+  text-align: center; 
+}
 
 .btn-delete {
   margin-top: 10px; }
