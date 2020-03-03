@@ -22,10 +22,10 @@ gem 'devise'
 gem 'counter_culture', '~> 1.8'
 gem 'line-bot-api'
 gem 'dotenv-rails'
-#gem 'sqlite3', '~> 1.3.6'
+gem 'sqlite3', '1.3.13'
 
 group :development, :test do
-  gem 'sqlite3', '~> 1.3.6'
+  gem 'sqlite3', '1.3.13'
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
 end
 
