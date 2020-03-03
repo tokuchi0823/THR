@@ -22,7 +22,6 @@ gem 'devise'
 gem 'counter_culture', '~> 1.8'
 gem 'line-bot-api'
 gem 'dotenv-rails'
-gem 'sqlite3', '1.3.13'
 
 group :development, :test do
   gem 'sqlite3', '1.3.13'
