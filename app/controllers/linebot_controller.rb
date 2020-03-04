@@ -1,8 +1,9 @@
 class LinebotController < ApplicationController
   require 'line/bot'
-
+ 
   protect_from_forgery :except => [:callback]
 
+  
   def client
     @client ||= Line::Bot::Client.new { |config|
       config.channel_secret = ENV["LINE_CHANNEL_SECRET"]
@@ -11,6 +12,7 @@ class LinebotController < ApplicationController
   end
 
   def callback
+    client.push_message(user_id, "aaaa")
     body = request.body.read
 
     signature = request.env['HTTP_X_LINE_SIGNATURE']
