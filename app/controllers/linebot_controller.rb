@@ -70,7 +70,7 @@ class LinebotController < ApplicationController
   def message 
   {
    type: 'text',
-   text: 'hello'
+   text: '(*´꒳`*)'
   }
   end
 end
