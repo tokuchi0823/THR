@@ -10,6 +10,10 @@ class LinebotController < ApplicationController
       config.channel_token = ENV["LINE_CHANNEL_TOKEN"]
     }
   end
+  
+  def notification
+    client.push_message("U9ddf1d3dc77db2dd1579c7a1d96204c9",message2)
+  end
 
   def callback
     
@@ -71,6 +75,13 @@ class LinebotController < ApplicationController
   {
    type: 'text',
    text: '(*´꒳`*)'
+  }
+  end
+  
+  def message2 
+  {
+   type: 'text',
+   text: '新しい企画が作成されました！'
   }
   end
 end

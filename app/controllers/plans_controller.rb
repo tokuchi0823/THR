@@ -26,6 +26,7 @@ class PlansController < ApplicationController
     @plan = Plan.new(plan_params)
     if @plan.save
       flash[:success] = '新規作成に成功しました。'
+      notification
       redirect_to @plan
     else
       render :new
