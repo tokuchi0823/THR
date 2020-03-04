@@ -12,7 +12,7 @@ class LinebotController < ApplicationController
   end
 
   def callback
-    client.push_message(user_id, "aaaa")
+    client.push_message("U9ddf1d3dc77db2dd1579c7a1d96204c9", "aaaa")
     body = request.body.read
 
     signature = request.env['HTTP_X_LINE_SIGNATURE']
