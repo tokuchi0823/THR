@@ -14,8 +14,7 @@ class LinebotController < ApplicationController
   def callback
     
     body = request.body.read
-    client.push_message(request.env['userId'],message)
-
+    
     signature = request.env['HTTP_X_LINE_SIGNATURE']
     unless client.validate_signature(body, signature)
       head :bad_request
@@ -29,6 +28,7 @@ class LinebotController < ApplicationController
         case event.type
         when Line::Bot::Event::MessageType::Text
           # LINEから送られてきたメッセージが「アンケート」と一致するかチェック
+          client.push_message("U9ddf1d3dc77db2dd1579c7a1d96204c9",message)
           if event.message['text'].eql?('アンケート')
             # private内のtemplateメソッドを呼び出します。
             client.reply_message(event['replyToken'], template)
