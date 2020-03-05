@@ -1,4 +1,21 @@
 class PlansController < ApplicationController
+   require 'line/bot'
+ 
+  protect_from_forgery :except => [:callback]
+
+  
+  def client
+    @client ||= Line::Bot::Client.new { |config|
+      config.channel_secret = ENV["LINE_CHANNEL_SECRET"]
+      config.channel_token = ENV["LINE_CHANNEL_TOKEN"]
+    }
+  end
+  
+  def notification
+    client.push_message("U9ddf1d3dc77db2dd1579c7a1d96204c9",message2)
+  end
+  
+   helper_method :notification
   
   def show
     @plan = Plan.find(params[:id])
@@ -52,6 +69,11 @@ class PlansController < ApplicationController
    params.require(:plan).permit(:purpose, :date, :meeting_place, :destination, :secretary_id)
   end
    
-  
+  def message2 
+  {
+   type: 'text',
+   text: '新しい企画が作成されました！'
+  }
+  end
   
 end
