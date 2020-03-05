@@ -1,5 +1,5 @@
 class PlansController < ApplicationController
-   require 'line/bot'
+  require 'line/bot'
  
   protect_from_forgery :except => [:callback]
 
@@ -72,7 +72,7 @@ class PlansController < ApplicationController
   def message2 
   {
    type: 'text',
-   text: '新しい企画が作成されました！'
+   text: '新しい企画が作成されました！チェックしてみましょう！https://twenty-hearts-riders-app.herokuapp.com/plans'
   }
   end
   
