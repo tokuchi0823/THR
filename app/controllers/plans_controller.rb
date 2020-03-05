@@ -72,7 +72,8 @@ class PlansController < ApplicationController
   def message2 
   {
    type: 'text',
-   text: '新しい企画が作成されました！チェックしてみましょう！https://twenty-hearts-riders-app.herokuapp.com/plans'
+   text: '新しい企画が作成されました！チェックしてみましょう！
+   https://twenty-hearts-riders-app.herokuapp.com/plans'
   }
   end
   
