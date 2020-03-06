@@ -1,6 +1,7 @@
 class PlansController < ApplicationController
   require 'line/bot'
  
+  before_action :logged_in_user, only: [:index, :show, :edit, :update, :destroy]
   protect_from_forgery :except => [:callback]
 
   
