@@ -74,7 +74,7 @@ class PlansController < ApplicationController
   {
    type: 'text',
    text: '新しい企画が作成されました！チェックしてみましょう！
-   https://twenty-hearts-riders-app.herokuapp.com/plans/' + 'おひょ'
+   https://twenty-hearts-riders-app.herokuapp.com/plans/' + params[:id] 
   }
   end
   
