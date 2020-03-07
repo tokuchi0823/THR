@@ -11,13 +11,6 @@ class LinebotController < ApplicationController
     }
   end
   
-  def notification
-    client.push_message("U68ca1b0726b554003dfd64c286791252",message2)
-  end
-  
-   helper_method :notification
-   
-
   def callback
     
     body = request.body.read

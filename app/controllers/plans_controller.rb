@@ -13,7 +13,7 @@ class PlansController < ApplicationController
   end
   
   def notification
-    client.push_message("U9ddf1d3dc77db2dd1579c7a1d96204c9",message2)
+    client.push_message("U68ca1b0726b554003dfd64c286791252",message2)
   end
   
    helper_method :notification
