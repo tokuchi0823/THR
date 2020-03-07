@@ -31,7 +31,7 @@ class LinebotController < ApplicationController
 
     events.each { |event|
       userId = event['source']['userId']  #userId取得
-    　p 'UserID: ' + userId # UserIdを確認
+      p 'UserID: ' + userId # UserIdを確認
       case event
       when Line::Bot::Event::Message
         case event.type
