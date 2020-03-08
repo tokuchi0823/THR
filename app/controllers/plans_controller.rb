@@ -79,11 +79,4 @@ class PlansController < ApplicationController
   }
   end
   
-  def message3
-  {
-   type: 'text',
-   text: '複数送信'
-  }
-  end
-  
 end
