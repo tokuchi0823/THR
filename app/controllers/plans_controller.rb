@@ -13,7 +13,7 @@ class PlansController < ApplicationController
   end
   
   def notification
-    client.broadcas(message2)
+    client.broadcast(message2)
     #lineuserId = ["U68ca1b0726b554003dfd64c286791252","U9ddf1d3dc77db2dd1579c7a1d96204c9"]
   end
   
