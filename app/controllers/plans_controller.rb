@@ -14,6 +14,8 @@ class PlansController < ApplicationController
   
   def notification
     client.push_message("U68ca1b0726b554003dfd64c286791252",message2)
+    userId = ["U68ca1b0726b554003dfd64c286791252","U9ddf1d3dc77db2dd1579c7a1d96204c9"]
+    client.push_message(userId,message3)
   end
   
    helper_method :notification
@@ -75,6 +77,13 @@ class PlansController < ApplicationController
    type: 'text',
    text: '新しい企画が作成されました！チェックしてみましょう！
    https://twenty-hearts-riders-app.herokuapp.com/plans/' + @plan.id.to_s 
+  }
+  end
+  
+  def message3
+  {
+   type: 'text',
+   text: '複数送信'
   }
   end
   
