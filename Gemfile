@@ -21,7 +21,6 @@ gem 'pry-rails'
 gem 'devise'
 gem 'counter_culture', '~> 1.8'
 gem 'line-bot-api'
-gem 'dotenv-rails'
 gem 'gmaps4rails'
 
 group :development, :test do
