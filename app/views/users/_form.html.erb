@@ -17,6 +17,19 @@
     <%= f.check_box :intercom %>
   </div>
   
+  <div>
+    <%= f.label:etc, class: "label-#{yield(:class_text)}" %>
+    <%= f.check_box :etc %>
+  </div>
+  
+  <div>
+    <%= f.label:navi, class: "label-#{yield(:class_text)}" %>
+    <%= f.check_box :navi %>
+  </div>
+  
+  <%= f.label:continuous_cruising_distance, class: "label-#{yield(:class_text)}" %>
+  <%= f.number_field :continuous_cruising_distance, class: "form-control" %>
+  
   <%= f.label :password, class: "label-#{yield(:class_text)}" %>
   <%= f.password_field :password, class: "form-control" %>
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200225033801) do
+ActiveRecord::Schema.define(version: 20200317161050) do
 
   create_table "attendances", force: :cascade do |t|
     t.date "worked_on"
@@ -37,33 +37,22 @@ ActiveRecord::Schema.define(version: 20200225033801) do
     t.index ["user_id"], name: "index_attendances_on_user_id"
   end
 
-  create_table "bases", force: :cascade do |t|
-    t.integer "base_no"
-    t.string "base_name"
-    t.string "base_type"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "plans", force: :cascade do |t|
     t.string "purpose"
-    t.datetime "date"
+    t.datetime "meetdate"
     t.string "meeting_place"
     t.string "destination"
     t.integer "secretary_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "sankas_count", default: 0, null: false
-  end
-
-  create_table "relationships", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "plan_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["plan_id"], name: "index_relationships_on_plan_id"
-    t.index ["user_id", "plan_id"], name: "index_relationships_on_user_id_and_plan_id", unique: true
-    t.index ["user_id"], name: "index_relationships_on_user_id"
+    t.string "overview"
+    t.datetime "finish_date"
+    t.string "passing_point1"
+    t.string "passing_point2"
+    t.string "passing_point3"
+    t.string "passing_point4"
+    t.string "passing_point5"
   end
 
   create_table "sankas", force: :cascade do |t|
@@ -71,6 +60,7 @@ ActiveRecord::Schema.define(version: 20200225033801) do
     t.integer "plan_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "comment"
     t.index ["plan_id"], name: "index_sankas_on_plan_id"
     t.index ["user_id", "plan_id"], name: "index_sankas_on_user_id_and_plan_id", unique: true
     t.index ["user_id"], name: "index_sankas_on_user_id"
@@ -85,16 +75,19 @@ ActiveRecord::Schema.define(version: 20200225033801) do
     t.string "remember_digest"
     t.boolean "admin", default: false
     t.string "department"
-    t.datetime "basic_time", default: "2020-02-12 23:00:00"
-    t.datetime "work_time", default: "2020-02-12 22:30:00"
+    t.datetime "basic_time", default: "2020-03-17 23:00:00"
+    t.datetime "work_time", default: "2020-03-17 22:30:00"
     t.string "employee_number"
     t.string "uid"
-    t.datetime "designated_work_start_time", default: "2020-02-13 00:00:00"
-    t.datetime "designated_work_end_time", default: "2020-02-13 09:00:00"
+    t.datetime "designated_work_start_time", default: "2020-03-18 00:00:00"
+    t.datetime "designated_work_end_time", default: "2020-03-18 09:00:00"
     t.boolean "superior", default: false
     t.string "bike"
     t.integer "displacement"
     t.boolean "intercom", default: false
+    t.boolean "etc", default: false
+    t.integer "continuous_cruising_distance"
+    t.boolean "navi", default: false
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 

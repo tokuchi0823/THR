@@ -22,11 +22,7 @@ Rails.application.routes.draw do
   
   patch 'attendances/update_approval_one_month', to: 'attendances#update_approval_one_month'
   
-  resources :bases
-  
   resources :plans
-  
-  resources :relationships
   
   resources :users do
     member do

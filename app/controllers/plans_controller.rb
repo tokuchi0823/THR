@@ -12,10 +12,9 @@ class PlansController < ApplicationController
     }
   end
   
-  def notification
-    client.broadcast(message2)
-    #lineuserId = ["U68ca1b0726b554003dfd64c286791252","U9ddf1d3dc77db2dd1579c7a1d96204c9"]
-  end
+  #def notification
+  #  client.broadcast(message2)
+  #end
   
    helper_method :notification
   
@@ -45,7 +44,7 @@ class PlansController < ApplicationController
     @plan = Plan.new(plan_params)
     if @plan.save
       flash[:success] = '新規作成に成功しました。'
-      notification
+     # notification
       redirect_to @plan
     else
       render :new
@@ -68,7 +67,7 @@ class PlansController < ApplicationController
   private
   
   def plan_params
-   params.require(:plan).permit(:purpose, :date, :meeting_place, :destination, :secretary_id)
+   params.require(:plan).permit(:purpose, :meetdate, :meeting_place, :destination, :secretary_id, :overview, :finish_date)
   end
    
   def message2 

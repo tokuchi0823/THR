@@ -7,6 +7,9 @@
     <% else %>
       <%= form_for(plan.sankas.build, remote: true) do |f| %>
         <div><%= hidden_field_tag :plan_id, plan.id %></div>
+           <%= f.label :comment, class: "label-signup" %>
+           <%= f.text_area :comment, size: "10x5", class: "form-control" %>
+           
            <%= f.submit "参加", class: "btn btn-primary btn-edit" %>
        　　<%=plan.sankas_count%>
       <% end %>

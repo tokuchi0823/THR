@@ -29,7 +29,7 @@
       <td></td>
       <% end %> 
       <td><%=plan.purpose%></td>
-      <td><%=plan.date%></td>
+      <td><%=l(plan.meetdate, format: :long)%>〜<%=l(plan.finish_date, format: :long)%></td>
       <td><%=User.find(plan.secretary_id).name %></td>
     </tr>
   <% end %>

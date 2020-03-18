@@ -20,6 +20,9 @@ ja:
           bike: バイク
           displacement: 排気量
           intercom: インカム持ち
+          etc: ETC有無
+          continuous_cruising_distance: 継続巡航距離（一回の給油でどのくらい走れるのか）*Km
+          navi: ナビ(スマフォアプリでもOK)
         attendance:
           worked_on: 日付
           started_at: 出勤時間
@@ -28,7 +31,14 @@ ja:
           user: ユーザーID
         plan:
           purpose: 目的
-          date: 日時
+          meetdate: 集合予定日時
           meeting_place: 集合場所
           destination: 目的地
+          overview: 概要
+          finish_date: 終了予定日時
+          passing_point1: 通過地点1
+          passing_point2: 通過地点2
+          passing_point3: 通過地点3
+          passing_point4: 通過地点4
+          passing_point5: 通過地点5
           
