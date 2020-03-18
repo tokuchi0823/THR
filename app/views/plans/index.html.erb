@@ -22,7 +22,7 @@
   <% @plan.each do |plan| %>
     <tr>
       <td><%= link_to "詳細", plan_path(plan) ,class: "btn btn-primary btn-edit"%></td>
-      <% if plan.secretary_id == current_user.id %>
+      <% if plan.secretary_id.to_s == current_user.id.to_s %>
       <td><%= link_to "削除", plan, method: :delete,
                 data: { confirm: "削除してよろしいですか？" }, class: "btn btn-primary btn-edit"%></td>
       <% else %>
