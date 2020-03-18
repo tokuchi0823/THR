@@ -5,7 +5,7 @@ class CreatePlans < ActiveRecord::Migration[5.1]
       t.datetime :meetdate
       t.string :meeting_place
       t.string :destination
-      t.string :secretary_id
+      t.integer :secretary_id
 
       t.timestamps
     end
