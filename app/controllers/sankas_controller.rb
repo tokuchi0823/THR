@@ -5,7 +5,8 @@ class SankasController < ApplicationController
     @plan = Plan.find(params[:plan_id])
     unless @plan.sanka?(current_user)
       @plan.sanka(current_user)
-      Sanka.where(plan_id: @plan.id).find_by(user_id: current_user.id).update_attributes(comment: params[:comment])
+      @sanka = Sanka.where(plan_id: params[:plan_id]).find_by(user_id: current_user)
+      @sanka.update_attributes(sanka_params)
       flash[:success] = "参加申請を送信しました。"
       @plan.reload
       redirect_to @plan
