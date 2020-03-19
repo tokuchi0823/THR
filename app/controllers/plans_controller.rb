@@ -1,5 +1,6 @@
 class PlansController < ApplicationController
   require 'line/bot'
+  require 'date'
  
   before_action :logged_in_user, only: [:index, :show, :edit, :update, :destroy]
   protect_from_forgery :except => [:callback]
@@ -44,7 +45,7 @@ class PlansController < ApplicationController
     @plan = Plan.new(plan_params)
     if @plan.save
       flash[:success] = '新規作成に成功しました。'
-      notification
+      #notification
       redirect_to @plan
     else
       render :new
@@ -52,7 +53,8 @@ class PlansController < ApplicationController
   end
   
   def index
-    @plan = Plan.all
+    #@plan = Plan.all
+    @plans = Plan.paginate(page: params[:page], per_page: 10)
   end
   
   def destroy
@@ -67,7 +69,7 @@ class PlansController < ApplicationController
   private
   
   def plan_params
-   params.require(:plan).permit(:purpose, :meetdate, :meeting_place, :destination, :secretary_id, :overview, :finish_date)
+   params.require(:plan).permit(:purpose, :meetdate, :meeting_place, :destination, :secretary_id, :overview, :finish_date, :deadline_date)
   end
    
   def message2 

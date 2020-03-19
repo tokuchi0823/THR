@@ -10,6 +10,7 @@
    <img class="qrcode" src="/595zmbtd.png" >
   </div>
 <div class="col-md-7">
+  <%= will_paginate %>
   <table class="table table-bordered table-condensed">
     <tr>
       <td></td>
@@ -18,7 +19,7 @@
       <td>日時</td>
       <td>幹事</td>
     </tr>
-  <% @plan.each do |plan| %>
+  <% @plans.each do |plan| %>
     <tr>
       <td><%= link_to "詳細", plan_path(plan) ,class: "btn btn-primary btn-edit"%></td>
       <% if plan.secretary_id.to_s == current_user.id.to_s %>
@@ -33,6 +34,7 @@
     </tr>
   <% end %>
   </table>
+  <%= will_paginate %>
   <div class="new-point-button-area">
   <%= link_to "ツーリングを企画する",new_plan_path,class: "btn btn-lg btn-primary btn-add" %>
   </div>

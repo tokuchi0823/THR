@@ -4,4 +4,6 @@ class Sanka < ApplicationRecord
   counter_culture :plan
   validates :user_id, presence: true
   validates :plan_id, presence: true
+  
+  validates :comment,length: { in: 2..100 }, allow_blank: true
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200317161050) do
+ActiveRecord::Schema.define(version: 20200318233650) do
 
   create_table "attendances", force: :cascade do |t|
     t.date "worked_on"
@@ -53,6 +53,8 @@ ActiveRecord::Schema.define(version: 20200317161050) do
     t.string "passing_point3"
     t.string "passing_point4"
     t.string "passing_point5"
+    t.datetime "deadline_date"
+    t.string "caution"
   end
 
   create_table "sankas", force: :cascade do |t|

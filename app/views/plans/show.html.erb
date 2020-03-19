@@ -18,14 +18,33 @@
     </tr>
   </table>
   <% if current_user.id.to_s == @plan.secretary_id.to_s%>
-   <td><%= link_to "修正", edit_plan_path(@plan) ,class: "btn btn-primary btn-edit"%></td>
+    <%= link_to "修正", edit_plan_path(@plan) ,class: "btn btn-primary btn-other"%>
+    <% if @plan.deadline_date && Date.current >= @plan.deadline_date %>
+    <input class="btn btn-primary btn-other" type="button"  value="こちらのツーリングは締め切られました。" disabled>
+  　 <% end %>
   <% else %>
-   <%= render "sankas/sanka", plan: @plan %>
+    <% if @plan.deadline_date && Date.current >= @plan.deadline_date %>
+     <input class="btn btn-primary btn-other" type="button"  value="こちらのツーリングは締め切られました。" disabled>
+    <% else %>
+     <%= render "sankas/sanka", plan: @plan %>
+    <% end %>
    <% end %>
-     <td><% Sanka.where(plan_id: @plan.id).each do |sanka| %></td>
-     <%=User.find(sanka.user_id).name%>
-     <%=sanka.comment%>
+    <table class="table table-bordered table-condensed table-hover">
+     <thead>
+      <tr>
+       <th>参加者</th>
+       <th>バイク</th>
+       <th>コメント</th>
+      </tr>
+     </thead>
+      <tr>
+       <% Sanka.where(plan_id: @plan.id).each do |sanka| %>
+       <td><%=User.find(sanka.user_id).name%></td>
+       <td><%=User.find(sanka.user_id).bike%></td>
+       <td><%=sanka.comment%></td>
+      </tr>
      <% end %>
+     </table>
 </div>
  
 <!--モーダルウインドウ表示-->

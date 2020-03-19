@@ -2,7 +2,7 @@
     <span class="sanka">
     <% if plan.sanka?(current_user) %>
       <%= form_for(plan.sankas.find_by(user_id: current_user.id), method: :delete, remote: true) do |f| %>
-       <%= f.submit "参加キャンセル", class: "btn btn-primary btn-edit" %>
+       <%= f.submit "参加キャンセル", class: "btn btn-primary btn-other" %>
       <% end %>
     <% else %>
       <%= form_for(plan.sankas.build, remote: true) do |f| %>
@@ -10,7 +10,7 @@
            <%= f.label :comment, class: "label-signup" %>
            <%= f.text_area :comment, size: "10x5", class: "form-control" %>
            
-           <%= f.submit "参加", class: "btn btn-primary btn-edit" %>
+           <%= f.submit "参加", class: "btn btn-primary btn-other" %>
        　　<%=plan.sankas_count%>
       <% end %>
     <% end %>
