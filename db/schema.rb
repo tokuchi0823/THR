@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200318233650) do
+ActiveRecord::Schema.define(version: 20200320092850) do
 
   create_table "attendances", force: :cascade do |t|
     t.date "worked_on"
@@ -55,6 +55,7 @@ ActiveRecord::Schema.define(version: 20200318233650) do
     t.string "passing_point5"
     t.datetime "deadline_date"
     t.string "caution"
+    t.integer "displacement_limit"
   end
 
   create_table "sankas", force: :cascade do |t|
@@ -77,12 +78,12 @@ ActiveRecord::Schema.define(version: 20200318233650) do
     t.string "remember_digest"
     t.boolean "admin", default: false
     t.string "department"
-    t.datetime "basic_time", default: "2020-03-17 23:00:00"
-    t.datetime "work_time", default: "2020-03-17 22:30:00"
+    t.datetime "basic_time", default: "2020-03-19 23:00:00"
+    t.datetime "work_time", default: "2020-03-19 22:30:00"
     t.string "employee_number"
     t.string "uid"
-    t.datetime "designated_work_start_time", default: "2020-03-18 00:00:00"
-    t.datetime "designated_work_end_time", default: "2020-03-18 09:00:00"
+    t.datetime "designated_work_start_time", default: "2020-03-20 00:00:00"
+    t.datetime "designated_work_end_time", default: "2020-03-20 09:00:00"
     t.boolean "superior", default: false
     t.string "bike"
     t.integer "displacement"

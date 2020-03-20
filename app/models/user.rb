@@ -17,6 +17,7 @@ class User < ApplicationRecord
   validates :department, length: { in: 2..50 }, allow_blank: true
   validates :basic_time, presence: true
   validates :work_time, presence: true
+  validates :displacement, presence: true
   validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
   
   def User.digest(string)
