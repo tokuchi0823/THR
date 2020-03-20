@@ -5,6 +5,7 @@ User.create!(name: "Sample User",
              password: "password",
              password_confirmation: "password",
              admin: true,
+             displacement: 400,
              employee_number: "1",
              uid: "1")
              
@@ -13,6 +14,7 @@ User.create!(name: "superior1",
              password: "password",
              password_confirmation: "password",
              superior: true,
+             displacement: 400,
              employee_number: "1",
              uid: "1")
              
@@ -21,6 +23,7 @@ User.create!(name: "superior2",
              password: "password",
              password_confirmation: "password",
              superior: true,
+             displacement: 50,
              employee_number: "1",
              uid: "1")
 
@@ -34,6 +37,7 @@ User.create!(name: "superior2",
                email: email,
                password: password,
                password_confirmation: password,
+               displacement: 400,
                employee_number: employee_number,
                uid: uid)
 end

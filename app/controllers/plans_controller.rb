@@ -54,7 +54,7 @@ class PlansController < ApplicationController
   
   def index
     #@plan = Plan.all
-    @plans = Plan.paginate(page: params[:page], per_page: 10)
+    @plans = Plan.paginate(page: params[:page], per_page: 10).order(created_at: :desc)
   end
   
   def destroy
