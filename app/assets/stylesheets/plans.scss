@@ -29,3 +29,12 @@
 .btn-signup {
   margin-top: 10px;
 }
+
+#phone {
+}
+
+@media screen and (min-width:480px) {
+  #phone  {
+    display:none;
+  }
+}
