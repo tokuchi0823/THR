@@ -119,6 +119,9 @@ GEM
     rack (2.2.2)
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
+    rack-user_agent (0.5.2)
+      rack (>= 1.5)
+      woothee (>= 1.0.0)
     rails (5.1.7)
       actioncable (= 5.1.7)
       actionmailer (= 5.1.7)
@@ -204,6 +207,7 @@ GEM
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.4)
     will_paginate (3.3.0)
+    woothee (1.11.0)
 
 PLATFORMS
   ruby
@@ -226,6 +230,7 @@ DEPENDENCIES
   pg (= 0.20.0)
   pry-rails
   puma (~> 3.7)
+  rack-user_agent
   rails (~> 5.1.6)
   rails-i18n
   roo
