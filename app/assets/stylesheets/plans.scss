@@ -10,6 +10,15 @@
   background-repeat: no-repeat;
 }
 
+.back-main-for-phone {
+  position: relative;
+  min-height: 100vh;
+  background-image: url("/DSC_0844_Original.jpg");
+  background-size: cover;
+  background-position: -640px;
+  background-repeat: no-repeat;
+}
+
 
 .btn-edit {
   margin-top: 10px;
@@ -34,7 +43,13 @@
 }
 
 @media screen and (min-width:480px) {
-  #phone  {
+  .back-main-for-phone {
+    display:none;
+  }
+}
+
+@media screen and (max-width:480px) {
+  .back-main {
     display:none;
   }
 }

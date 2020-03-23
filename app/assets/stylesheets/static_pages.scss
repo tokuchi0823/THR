@@ -1,16 +1,49 @@
 // Place all the styles related to the StaticPages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+@media screen and (min-width:481px){
 .top-main {
   position: relative;
   min-height: 100vh;
   background-image: url("/DSC_0862.JPG");
   background-size: cover;
   background-position: center center;
+  //-650px
   background-repeat: no-repeat;
 }
+}
+
+@media screen and (max-width:480px) {
+.top-main-for-phone {
+  position: relative;
+  min-height: 100vh;
+  background-image: url("/DSC_0862.JPG");
+  background-size: cover;
+  background-position: -650px;
+  //-650px
+  background-repeat: no-repeat;
+}
+}
+
 
 .top-color{
   background-color:rgba(0,0,0,0);
   color:white;
 }
+
+#top-phone{
+   background-position: -650px;
+  //
+}
+
+ // @media screen and (min-width:480px) {
+//   .top-main {
+//     display:none;
+//    }
+//   }
+
+// @media screen and (max-width:481px) {
+//   .top-main-for-phone {
+//    display:none;
+//   }
+ //}
