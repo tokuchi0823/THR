@@ -17,7 +17,12 @@ class PlansController < ApplicationController
     client.broadcast(message2)
   end
   
+  def notification_update(ids)
+    client.multicast(ids,message_update)
+  end
+  
    helper_method :notification
+   helper_method :notification_edit
   
   def show
     @plan = Plan.find(params[:id])
@@ -35,6 +40,8 @@ class PlansController < ApplicationController
     @plan = Plan.find(params[:id])
     if @plan.update_attributes(plan_params)
       flash[:success] = "ツーリング企画を更新しました。"
+      ids = Sanka.where(plan_id: @plan.id).plunk(user_id)
+      notification_update(ids)
       redirect_to plans_url(@plan)
     else
       render :edit
@@ -76,6 +83,14 @@ class PlansController < ApplicationController
   {
    type: 'text',
    text: '新しい企画が作成されました！チェックしてみましょう！
+   https://twenty-hearts-riders-app.herokuapp.com/plans/' + @plan.id.to_s 
+  }
+  end
+  
+  def message_update
+  {
+   type: 'text',
+   text: '参加予定の企画が修正されました！チェックしてみましょう！
    https://twenty-hearts-riders-app.herokuapp.com/plans/' + @plan.id.to_s 
   }
   end
