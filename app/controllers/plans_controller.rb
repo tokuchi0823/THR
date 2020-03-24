@@ -40,7 +40,7 @@ class PlansController < ApplicationController
     @plan = Plan.find(params[:id])
     if @plan.update_attributes(plan_params)
       flash[:success] = "ツーリング企画を更新しました。"
-      ids = Sanka.where(plan_id: @plan.id).plunk(user_id)
+      ids = Sanka.where(plan_id: @plan.id).pluck(:user_id)
       notification_update(ids)
       redirect_to plans_url(@plan)
     else
