@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200320092850) do
+ActiveRecord::Schema.define(version: 20200324134823) do
 
   create_table "attendances", force: :cascade do |t|
     t.date "worked_on"
@@ -91,6 +91,7 @@ ActiveRecord::Schema.define(version: 20200320092850) do
     t.boolean "etc", default: false
     t.integer "continuous_cruising_distance"
     t.boolean "navi", default: false
+    t.string "line_id"
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 

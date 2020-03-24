@@ -32,6 +32,8 @@ class LinebotController < ApplicationController
           # LINEから送られてきたメッセージが「アンケート」と一致するかチェック
           #client.push_message("U9ddf1d3dc77db2dd1579c7a1d96204c9",message)
           if User.find_by(email: event.message['text']).present?
+            @user =User.find_by(email: event.message['text'])
+            @user.update_attribute(line_id)
             # private内のtemplateメソッドを呼び出します。
           client.push_message("U9ddf1d3dc77db2dd1579c7a1d96204c9",message4)
           end
