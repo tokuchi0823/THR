@@ -33,7 +33,7 @@ class LinebotController < ApplicationController
           #client.push_message("U9ddf1d3dc77db2dd1579c7a1d96204c9",message)
           if User.find_by(email: event.message['text']).present?
             @user =User.find_by(email: event.message['text'])
-            @user.update_attribute(line_id)
+            @user.update_attribute(line_id: userId)
             # private内のtemplateメソッドを呼び出します。
           client.push_message("U9ddf1d3dc77db2dd1579c7a1d96204c9",message4)
           end
