@@ -21,6 +21,10 @@ class PlansController < ApplicationController
     client.multicast(ids,message_update)
   end
   
+  def notification_delete(ids)
+    client.multicast(ids,message_update)
+  end
+  
    helper_method :notification
    helper_method :notification_edit
   
@@ -67,6 +71,9 @@ class PlansController < ApplicationController
   
   def destroy
     @plan = Plan.find(params[:id])
+    userid = Sanka.where(plan_id: @plan.id).pluck(:user_id)
+    ids = User.where(id: userid).pluck(:line_id)
+    notification_delete(ids)
     @plan.destroy
     flash[:success] = "企画を削除しました。"
     redirect_to plans_url(@plan)
