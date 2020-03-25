@@ -84,7 +84,7 @@ class PlansController < ApplicationController
   private
   
   def plan_params
-   params.require(:plan).permit(:purpose, :meetdate, :meeting_place, :destination, :secretary_id, :overview, :finish_date, :deadline_date)
+   params.require(:plan).permit(:purpose, :meetdate, :meeting_place, :destination, :secretary_id, :overview, :finish_date, :deadline_date, :passing_point1, :passing_point2, :passing_point3, :passing_point4, :passing_point5)
   end
    
   def message2 

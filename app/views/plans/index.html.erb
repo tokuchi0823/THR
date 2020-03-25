@@ -2,36 +2,65 @@
 <h1>ツーリング企画一覧</h1>
 <div class="row">
   
-  <div class="col-md-4 col-xs-12">
+  <div class="col-md-3 col-xs-12">
     <p>LINEの友達登録をすると<br>新規企画のお知らせが来ます<br>
     <div class="line-it-button" data-lang="ja" data-type="friend" data-lineid="@595zmbtd" data-count="true" style="display: none;"></div>
  <script src="https://d.line-scdn.net/r/web/social-plugin/js/thirdparty/loader.min.js" async="async" defer="defer"></script>
     </p>
    <img class="qrcode hidden-xs" src="/595zmbtd.png" >
   </div>
-<div class="col-md-7  col-xs-12">
+<div class="col-md-9 col-xs-12">
   <%= will_paginate %>
-  <table class="table table-bordered table-condensed">
-    <tr>
-      <td></td>
-      <td></td>
-      <td>目的</td>
-      <td>日時</td>
-      <td>幹事</td>
-    </tr>
-  <% @plans.each do |plan| %>
-    <tr>
-      <td><%= link_to "詳細", plan_path(plan) ,class: "btn btn-primary btn-edit"%></td>
-      <% if plan.secretary_id.to_s == current_user.id.to_s %>
-      <td><%= link_to "削除", plan, method: :delete,
+  <table class="table">
+     <% @plans.each do |plan| %>
+     <tr>
+       <td>タイトル:</td>
+       <td><%=plan.purpose%></td>
+     </tr>
+     <tr>
+       <td>ルート:</td>
+       <td><%=plan.meeting_place%>〜
+       <% if plan.passing_point1.present? %>
+        <%=plan.passing_point1%>〜
+       <% end %>  
+       <% if plan.passing_point2.present? %>
+        <%=plan.passing_point2%>〜
+       <% end %>  
+       <% if plan.passing_point3.present? %>
+        <%=plan.passing_point3%>〜
+       <% end %>  
+       <% if plan.passing_point4.present? %>
+        <%=plan.passing_point4%>〜
+       <% end %>  
+       <% if plan.passing_point5.present? %>
+        <%=plan.passing_point5%>〜
+       <% end %>  
+       <%=plan.destination%></td>
+     </tr>
+     <tr>
+       <td>日時:</td>
+       <% if l(plan.meetdate, format: :default).to_s == l(plan.finish_date, format: :default).to_s%> 
+        <td><%=l(plan.meetdate, format: :long)%>〜<%=l(plan.finish_date, format: :time)%></td>
+       <% else %> 
+        <td><%=l(plan.meetdate, format: :long)%>〜<%=l(plan.finish_date, format: :long)%></td>
+       <% end %>
+     </tr>
+     <tr>
+       <td>幹事:</td>
+       <td><%=User.find(plan.secretary_id).name %></td>
+     </tr>
+     <tr>
+       <td>締め切り:</td>
+       <td><%=l(plan.deadline_date, format: :default) %></td>
+     </tr>
+     <td><%= link_to "詳細", plan_path(plan) ,class: "btn btn-primary btn-edit"%>
+       <% if plan.secretary_id.to_s == current_user.id.to_s %>
+       <%= link_to "削除", plan, method: :delete,
                 data: { confirm: "削除してよろしいですか？" }, class: "btn btn-primary btn-edit"%></td>
-      <% else %>
-      <td></td>
-      <% end %> 
-      <td><%=plan.purpose%></td>
-      <td><%=l(plan.meetdate, format: :long)%>〜<%=l(plan.finish_date, format: :long)%></td>
-      <td><%=User.find(plan.secretary_id).name %></td>
-    </tr>
+                <td></td>
+       <% else %>
+        <td></td>
+       <% end %> 
   <% end %>
   </table>
   <%= will_paginate %>

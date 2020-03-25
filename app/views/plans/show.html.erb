@@ -11,7 +11,11 @@
     </tr>
    </thead>
     <tr>
-      <td><%=l(@plan.meetdate, format: :long)%>〜<%=l(@plan.finish_date, format: :long)%></td>
+       <% if l(@plan.meetdate, format: :default).to_s == l(@plan.finish_date, format: :default).to_s%> 
+        <td><%=l(@plan.meetdate, format: :long)%>〜<%=l(@plan.finish_date, format: :time)%></td>
+       <% else %> 
+        <td><%=l(@plan.meetdate, format: :long)%>〜<%=l(@plan.finish_date, format: :long)%></td>
+       <% end %>
       <td><%=@plan.meeting_place%></td>
       <td><%=@plan.destination.html_safe%></td>
       <td><%=User.find(@plan.secretary_id).name %></td>

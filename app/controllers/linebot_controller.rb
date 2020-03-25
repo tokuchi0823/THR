@@ -35,9 +35,9 @@ class LinebotController < ApplicationController
             @user =User.find_by(email: event.message['text'])
             @user.update_attribute(:line_id, userId)
             # private内のtemplateメソッドを呼び出します。
-          client.push_message("U9ddf1d3dc77db2dd1579c7a1d96204c9",message4)
+            client.reply_message(event['replyToken'], message4)
           end
-          client.broadcast(message)
+          #client.broadcast(message)
           if event.message['text'].eql?('アンケート')
             # private内のtemplateメソッドを呼び出します。
             client.reply_message(event['replyToken'], template)
@@ -86,7 +86,7 @@ class LinebotController < ApplicationController
    def message4 
   {
    type: 'text',
-   text: 'メアドあり'
+   text: '送信されたメールアドレスのアカウントにLINEが登録されました！これで参加予定の企画についての通知が来るようになります！'
   }
    end
   
