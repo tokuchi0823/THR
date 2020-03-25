@@ -210,7 +210,6 @@ ja:
       only_mi: "%M"
       san: "%H%M"
       default: "%Y/%m/%d"
-      #long: "%Y年%m月%d日(%a)"
       middle: "%Y年%m月"
       short: "%-m/%-d"
     pm: 午後
