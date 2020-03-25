@@ -22,7 +22,7 @@ class PlansController < ApplicationController
   end
   
   def notification_delete(ids)
-    client.multicast(ids,message_update)
+    client.multicast(ids,message_delete)
   end
   
    helper_method :notification
@@ -100,6 +100,13 @@ class PlansController < ApplicationController
    type: 'text',
    text: '参加予定の企画が修正されました！チェックしてみましょう！
    https://twenty-hearts-riders-app.herokuapp.com/plans/' + @plan.id.to_s 
+  }
+  end
+  
+  def message_delete
+  {
+   type: 'text',
+   text: '参加予定の企画が中止になりました。次回の企画をお楽しみに！'
   }
   end
   
