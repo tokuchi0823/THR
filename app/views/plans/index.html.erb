@@ -14,11 +14,11 @@
   <table class="table">
      <% @plans.each do |plan| %>
      <tr>
-       <td>タイトル:</td>
+       <td><b>タイトル:</b></td>
        <td><%=plan.purpose%></td>
      </tr>
      <tr>
-       <td>ルート:</td>
+       <td><b>ルート:</b></td>
        <td><%=plan.meeting_place%>〜
        <% if plan.passing_point1.present? %>
         <%=plan.passing_point1%>〜
@@ -38,7 +38,7 @@
        <%=plan.destination%></td>
      </tr>
      <tr>
-       <td>日時:</td>
+       <td><b>日時:</b></td>
        <% if l(plan.meetdate, format: :default).to_s == l(plan.finish_date, format: :default).to_s%> 
         <td><%=l(plan.meetdate, format: :long)%>〜<%=l(plan.finish_date, format: :time)%></td>
        <% else %> 
@@ -46,12 +46,12 @@
        <% end %>
      </tr>
      <tr>
-       <td>幹事:</td>
+       <td><b>幹事:</b></td>
        <td><%=User.find(plan.secretary_id).name %></td>
      </tr>
      <tr>
-       <td>締め切り:</td>
-       <td><%=l(plan.deadline_date, format: :default) %></td>
+       <td><b>締め切り:</b></td>
+       <td><%=l(plan.deadline_date, format: :default)%></td>
      </tr>
      <td><%= link_to "詳細", plan_path(plan) ,class: "btn btn-primary btn-edit"%>
        <% if plan.secretary_id.to_s == current_user.id.to_s %>

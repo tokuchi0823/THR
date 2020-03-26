@@ -1,24 +1,55 @@
 <% provide(:title, @plan.purpose) %>
 <h1><%=@plan.purpose%></h1>
- <div>
-  <table class="table table-bordered table-condensed table-hover">
-   <thead>
+ <div class="col-md-12 col-xs-12">
+  <table class="table">
     <tr>
-     <th>日時</th>
-     <th>集合場所</th>
-     <th>目的地</th>
-     <th>幹事</th>
-    </tr>
-   </thead>
-    <tr>
+     <td><b>日時:</b></td>
        <% if l(@plan.meetdate, format: :default).to_s == l(@plan.finish_date, format: :default).to_s%> 
         <td><%=l(@plan.meetdate, format: :long)%>〜<%=l(@plan.finish_date, format: :time)%></td>
        <% else %> 
         <td><%=l(@plan.meetdate, format: :long)%>〜<%=l(@plan.finish_date, format: :long)%></td>
        <% end %>
-      <td><%=@plan.meeting_place%></td>
-      <td><%=@plan.destination.html_safe%></td>
+    </tr>
+    <tr>
+     <td><b>集合場所:</b></td>
+     <td><%=@plan.meeting_place%></td>
+    </tr>
+    <tr>
+     <td><b>ルート:</b></td>
+     <td><%=@plan.meeting_place%>〜
+       <% if @plan.passing_point1.present? %>
+        <%=@plan.passing_point1%>〜
+       <% end %>  
+       <% if @plan.passing_point2.present? %>
+        <%=@plan.passing_point2%>〜
+       <% end %>  
+       <% if @plan.passing_point3.present? %>
+        <%=@plan.passing_point3%>〜
+       <% end %>  
+       <% if @plan.passing_point4.present? %>
+        <%=@plan.passing_point4%>〜
+       <% end %>  
+       <% if @plan.passing_point5.present? %>
+        <%=@plan.passing_point5%>〜
+       <% end %>  
+       <%=@plan.destination%></td>
+    </tr>
+    <tr>
+      <td><b>幹事:</b></td>
       <td><%=User.find(@plan.secretary_id).name %></td>
+    </tr>
+    <tr>
+      <td><b>概要:</b></td>
+      <td><%=@plan.overview%></td>
+    </tr>
+    <tr>
+      <td><b>企画作成日:</b></td>
+      <td><%= l(@plan.created_at, format: :default)%></td>
+    </tr>
+    <tr>
+      <td><b>企画更新日:</b></td>
+      <td><%= l(@plan.updated_at, format: :default)%></td>
+    </tr>
     </tr>
   </table>
   <% if current_user.id.to_s == @plan.secretary_id.to_s%>
@@ -38,6 +69,11 @@
       <tr>
        <th>参加者</th>
        <th>バイク</th>
+       <th>排気量</th>
+       <th>インカム持ち</th>
+       <th>ETC</th>
+       <th>ナビ</th>
+       <th>継続巡航距離</th>
        <th>コメント</th>
       </tr>
      </thead>
