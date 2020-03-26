@@ -1,9 +1,10 @@
 <% provide(:title, @plan.purpose) %>
+
 <h1><%=@plan.purpose%></h1>
  <div class="col-md-12 col-xs-12">
   <table class="table">
     <tr>
-     <td><b>日時:</b></td>
+     <td><b><span>日時:</span></b></td>
        <% if l(@plan.meetdate, format: :default).to_s == l(@plan.finish_date, format: :default).to_s%> 
         <td><%=l(@plan.meetdate, format: :long)%>〜<%=l(@plan.finish_date, format: :time)%></td>
        <% else %> 
@@ -11,11 +12,11 @@
        <% end %>
     </tr>
     <tr>
-     <td><b>集合場所:</b></td>
+     <td><b><span>集合場所:</span></b></td>
      <td><%=@plan.meeting_place%></td>
     </tr>
     <tr>
-     <td><b>ルート:</b></td>
+     <td><b><span>ルート:</span></b></td>
      <td><%=@plan.meeting_place%>〜
        <% if @plan.passing_point1.present? %>
         <%=@plan.passing_point1%>〜
@@ -35,19 +36,19 @@
        <%=@plan.destination%></td>
     </tr>
     <tr>
-      <td><b>幹事:</b></td>
+      <td><b><span>幹事:</span></b></td>
       <td><%=User.find(@plan.secretary_id).name %></td>
     </tr>
     <tr>
-      <td><b>概要:</b></td>
+      <td><b><span>概要:</span></b></td>
       <td><%=@plan.overview%></td>
     </tr>
     <tr>
-      <td><b>企画作成日:</b></td>
+      <td><b><span>企画作成日:</span></b></td>
       <td><%= l(@plan.created_at, format: :default)%></td>
     </tr>
     <tr>
-      <td><b>企画更新日:</b></td>
+      <td><b><span>企画更新日:</span></b></td>
       <td><%= l(@plan.updated_at, format: :default)%></td>
     </tr>
     </tr>
