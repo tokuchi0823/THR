@@ -90,23 +90,21 @@ class PlansController < ApplicationController
   def message2 
   {
    type: 'text',
-   text: '新しい企画が作成されました！チェックしてみましょう！
-   https://twenty-hearts-riders-app.herokuapp.com/plans/' + @plan.id.to_s 
+   text: "新しい企画が作成されました！チェックしてみましょう！\nhttps://twenty-hearts-riders-app.herokuapp.com/plans/" + @plan.id.to_s 
   }
   end
   
   def message_update
   {
    type: 'text',
-   text: '参加予定の企画が修正されました！チェックしてみましょう！
-   https://twenty-hearts-riders-app.herokuapp.com/plans/' + @plan.id.to_s 
+   text: "参加予定の企画が修正されました！チェックしてみましょう！\nhttps://twenty-hearts-riders-app.herokuapp.com/plans/" + @plan.id.to_s 
   }
   end
   
   def message_delete
   {
    type: 'text',
-   text: '参加予定の企画が中止になりました。次回の企画をお楽しみに！'
+   text: "参加予定の企画が中止になりました。\n" + @plan.purpose + "\n次回の企画をお楽しみに！"
   }
   end
   
