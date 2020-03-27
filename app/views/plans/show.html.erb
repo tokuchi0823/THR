@@ -51,6 +51,9 @@
       <td><b><span>企画更新日:</span></b></td>
       <td><%= l(@plan.updated_at, format: :default)%></td>
     </tr>
+    <tr>
+      <td><b><span>注意事項:</span></b></td>
+      <td><%=@plan.caution%></td>
     </tr>
   </table>
   <% if current_user.id.to_s == @plan.secretary_id.to_s%>
@@ -65,27 +68,27 @@
      <%= render "sankas/sanka", plan: @plan %>
     <% end %>
    <% end %>
-    <table class="table table-bordered table-condensed table-hover">
-     <thead>
-      <tr>
-       <th>参加者</th>
-       <th>バイク</th>
-       <th>排気量</th>
-       <th>インカム持ち</th>
-       <th>ETC</th>
-       <th>ナビ</th>
-       <th>継続巡航距離</th>
-       <th>コメント</th>
-      </tr>
-     </thead>
-      <tr>
-       <% Sanka.where(plan_id: @plan.id).each do |sanka| %>
-       <td><%=User.find(sanka.user_id).name%></td>
-       <td><%=User.find(sanka.user_id).bike%></td>
-       <td><%=sanka.comment%></td>
-      </tr>
+      <% Sanka.where(plan_id: @plan.id).each do |sanka| %>
+      <div style="padding: 10px; margin-bottom: 10px; border: 1px solid #333333;">
+       <b>名前:<%=User.find(sanka.user_id).name%></b><br>
+          ・バイク：<%=User.find(sanka.user_id).bike%><br>
+          ・排気量：<%=User.find(sanka.user_id).displacement%>
+          <% if User.find(sanka.user_id).intercom? %><br>
+          ・インカム持ち
+          <% end %>
+          <% if User.find(sanka.user_id).etc? %><br>
+          ・ETCあり
+          <% end %>
+          <% if User.find(sanka.user_id).navi? %><br>
+          ・ナビあり
+          <% end %>
+          <% if User.find(sanka.user_id).continuous_cruising_distance.present? %><br>
+          ・継続巡航距離:<%=User.find(sanka.user_id).continuous_cruising_distance%>Km<br>
+          <% end %>
+          コメント<br>
+          <%=sanka.comment%> 
+      </div>
      <% end %>
-     </table>
 </div>
  
 <!--モーダルウインドウ表示-->
