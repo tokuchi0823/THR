@@ -68,6 +68,7 @@
      <%= render "sankas/sanka", plan: @plan %>
     <% end %>
    <% end %>
+   <br><b>現在の参加予定人数：<%=@plan.sankas_count+1%></b><br>
       <% Sanka.where(plan_id: @plan.id).each do |sanka| %>
       <div style="padding: 10px; margin-bottom: 10px; border: 1px solid #333333;">
        <b>名前:<%=User.find(sanka.user_id).name%></b><br>
