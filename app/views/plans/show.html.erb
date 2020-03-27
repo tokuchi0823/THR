@@ -72,17 +72,17 @@
       <div style="padding: 10px; margin-bottom: 10px; border: 1px solid #333333;">
        <b>名前:<%=User.find(sanka.user_id).name%></b><br>
           ・バイク：<%=User.find(sanka.user_id).bike%><br>
-          ・排気量：<%=User.find(sanka.user_id).displacement%>
-          <% if User.find(sanka.user_id).intercom? %><br>
-          ・インカム持ち
+          ・排気量：<%=User.find(sanka.user_id).displacement%><br>
+          <% if User.find(sanka.user_id).intercom? %>
+          ・インカム持ち<br>
           <% end %>
-          <% if User.find(sanka.user_id).etc? %><br>
-          ・ETCあり
+          <% if User.find(sanka.user_id).etc? %>
+          ・ETCあり<br>
           <% end %>
-          <% if User.find(sanka.user_id).navi? %><br>
-          ・ナビあり
+          <% if User.find(sanka.user_id).navi? %>
+          ・ナビあり<br>
           <% end %>
-          <% if User.find(sanka.user_id).continuous_cruising_distance.present? %><br>
+          <% if User.find(sanka.user_id).continuous_cruising_distance.present? %>
           ・継続巡航距離:<%=User.find(sanka.user_id).continuous_cruising_distance%>Km<br>
           <% end %>
           コメント<br>
