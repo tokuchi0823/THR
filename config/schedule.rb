@@ -7,7 +7,7 @@
 #
 set :output, "THR_plan/log/cron_log.log"
 
- every :day, at: "11:10 am" do
+ every 1.minutes do
 #   command "/usr/bin/some_great_command"
    runner "client.broadcast(message2)"
 #   rake "some:great:rake:task"
