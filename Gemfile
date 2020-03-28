@@ -23,6 +23,7 @@ gem 'counter_culture', '~> 1.8'
 gem 'line-bot-api'
 gem 'gmaps4rails'
 gem 'rack-user_agent'
+gem 'whenever', require: false
 
 group :development, :test do
   gem 'sqlite3', '1.3.13'
