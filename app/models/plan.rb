@@ -9,8 +9,8 @@ class Plan < ApplicationRecord
   validates :destination,  presence: true, length: { maximum: 50 }
   validates :deadline_date,  presence: true
   validate :meetdate_than_finish_date_fast_if_invalid
-  
-  
+
+
        # マイクロポストをいいねする
   def sanka(user)
     sankas.create(user_id: user.id)
@@ -32,4 +32,13 @@ class Plan < ApplicationRecord
      end
     end
   end
+  
+  def message2 
+  {
+   type: 'text',
+   text: "新しい企画が作成されました！チェックしてみましょう！\nhttps://twenty-hearts-riders-app.herokuapp.com/plans/" + @plan.id.to_s 
+  }
+  end
+  
+  
 end
