@@ -10,6 +10,8 @@
        <% else %> 
         <td><%=l(@plan.meetdate, format: :long)%>〜<%=l(@plan.finish_date, format: :long)%></td>
        <% end %>
+       <%=@plan.meetdate.prev_day %>:
+       <%=Time.current.prev_day %>
     </tr>
     <tr>
      <td><b><span>集合場所:</span></b></td>

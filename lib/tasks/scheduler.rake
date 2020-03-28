@@ -11,7 +11,7 @@ namespace :push_line do
         }
         @plans = Plan.all
         @plans.each do |plan|
-            if plan.meetdate == Datetime.now-1
+            if plan.meetdate-1 <= Datetime.now && plan.meetdate > Datetime.now
             client.broadcast(message)
             end
         end
