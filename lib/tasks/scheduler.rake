@@ -1,9 +1,9 @@
 namespace :push_line do 
-    desc "LINEBOT：ゴミ出しの通知" 
+    desc "LINEBOT：企画前日通知" 
     task push_line_message_trash: :environment do
         message = {
             type: 'text',
-            text: 'テスト1'
+            text: "もうすぐツーリングですね！バイクの調子はどうですか？\nガソリンは満タンですか？ルートも再確認しておきましょう！\n"
         }
         client = Line::Bot::Client.new { |config|
             config.channel_secret = ENV["LINE_CHANNEL_SECRET"]
@@ -11,7 +11,7 @@ namespace :push_line do
         }
         @plans = Plan.all
         @plans.each do |plan|
-            if plan.meetdate.prev_day <= Datetime.now && plan.meetdate > Datetime.now
+            if plan.meetdate.prev_day <= Time.current && plan.meetdate > Datetime.now
             client.broadcast(message)
             end
         end
