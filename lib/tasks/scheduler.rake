@@ -5,7 +5,7 @@ namespace :push_line do
     task push_line_message_trash: :environment do
         message = {
             type: 'text',
-            text: "もうすぐツーリングですね！バイクの調子はどうですか？\nガソリンは満タンですか？ルートも再確認しておきましょう！\n"
+            text: "もうすぐツーリングですね！バイクの調子はどうですか？\nガソリンは満タンですか？ルートも再確認しておきましょう！\nhttps://twenty-hearts-riders-app.herokuapp.com/plans/" + plan.id.to_s
         }
         client = Line::Bot::Client.new { |config|
             config.channel_secret = ENV["LINE_CHANNEL_SECRET"]
