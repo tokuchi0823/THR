@@ -104,7 +104,7 @@ class PlansController < ApplicationController
   def message_delete
   {
    type: 'text',
-   text: "参加予定の企画が中止になりました。\n" + @plan.purpose + "\n次回の企画をお楽しみに！"
+   text: "参加予定の企画が中止になりました。\n「" + @plan.purpose + "」\n次回の企画をお楽しみに！"
   }
   end
   

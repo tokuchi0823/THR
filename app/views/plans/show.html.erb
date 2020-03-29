@@ -1,4 +1,5 @@
 <% provide(:title, @plan.purpose) %>
+<% require 'date' %>
 
 <h1><%=@plan.purpose%></h1>
  <div class="col-md-12 col-xs-12">
@@ -10,8 +11,9 @@
        <% else %> 
         <td><%=l(@plan.meetdate, format: :long)%>〜<%=l(@plan.finish_date, format: :long)%></td>
        <% end %>
-       <%=@plan.meetdate.prev_day %>:
+       <%=@plan.meetdate.prev_day.to_date %>:
        <%=Time.current.prev_day %>
+       <%=Date.today%>
     </tr>
     <tr>
      <td><b><span>集合場所:</span></b></td>
