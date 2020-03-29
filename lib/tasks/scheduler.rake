@@ -3,10 +3,6 @@ require 'date'
 namespace :push_line do 
     desc "LINEBOT：企画前日通知" 
     task push_line_message_trash: :environment do
-        message = {
-            type: 'text',
-            text: "もうすぐツーリングですね！バイクの調子はどうですか？\nガソリンは満タンですか？ルートも再確認しておきましょう！\nhttps://twenty-hearts-riders-app.herokuapp.com/plans/" + plan.id.to_s
-        }
         client = Line::Bot::Client.new { |config|
             config.channel_secret = ENV["LINE_CHANNEL_SECRET"]
             config.channel_token = ENV["LINE_CHANNEL_TOKEN"]
@@ -14,7 +10,11 @@ namespace :push_line do
         @plans = Plan.all
         @plans.each do |plan|
             if plan.meetdate.prev_day.to_date <= Date.today && plan.meetdate.to_date > Date.today
-            client.broadcast(message)
+                message = {
+                type: 'text',
+                text: "もうすぐツーリングですね！バイクの調子はどうですか？\nガソリンは満タンですか？ルートも再確認しておきましょう！\nhttps://twenty-hearts-riders-app.herokuapp.com/plans/" + plan.id.to_s
+                }
+                client.broadcast(message)
             end
         end
     end
