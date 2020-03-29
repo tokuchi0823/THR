@@ -14,7 +14,14 @@ namespace :push_line do
                 type: 'text',
                 text: "もうすぐツーリングですね！バイクの調子はどうですか？\nガソリンは満タンですか？ルートも再確認しておきましょう！\nhttps://twenty-hearts-riders-app.herokuapp.com/plans/" + plan.id.to_s
                 }
+                message1 = {
+                type: 'text',
+                text: "test"
+                }
+                userid = Sanka.where(plan_id: plan.id).pluck(:user_id)
+                ids = User.where(id: userid).pluck(:line_id)
                 client.broadcast(message)
+                client.multicast(ids,message1)
             end
         end
     end
