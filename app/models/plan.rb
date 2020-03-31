@@ -9,8 +9,8 @@ class Plan < ApplicationRecord
   validates :destination,  presence: true, length: { maximum: 50 }
   validates :deadline_date,  presence: true
   validate :meetdate_than_finish_date_fast_if_invalid
-
-
+  mount_uploader :picture, PictureUploader
+  validate :picture_size
        # マイクロポストをいいねする
   def sanka(user)
     sankas.create(user_id: user.id)
@@ -40,5 +40,13 @@ class Plan < ApplicationRecord
   }
   end
   
+   private
+
+    # アップロードされた画像のサイズをバリデーションする
+    def picture_size
+      if picture.size > 5.megabytes
+        errors.add(:picture, "should be less than 5MB")
+      end
+    end
   
 end

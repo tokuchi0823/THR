@@ -39,6 +39,16 @@
   margin-top: 10px;
 }
 
+.btn-picture {
+  margin-top: 10px;
+  margin-left: -10px;
+  margin-bottom: 10px;
+}
+
+.picture {
+  margin-left: 0px;
+}
+
 #phone {
 }
 
@@ -51,5 +61,9 @@
 @media screen and (max-width:480px) {
   .back-main {
     display:none;
+  }
+  .picture {
+    margin-left: 30px;
+    margin-bottom: 10px;
   }
 }

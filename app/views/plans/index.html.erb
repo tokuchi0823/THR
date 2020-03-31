@@ -4,16 +4,25 @@
   
   <div class="col-md-3 col-xs-12">
     <p>LINEの友達登録をすると<br>新規企画のお知らせの他、<br>
-       参加予定の企画についてのお知らせが来るようになります！
+       参加予定の企画についての<br>お知らせが来るようになります！
     <div class="line-it-button" data-lang="ja" data-type="friend" data-lineid="@595zmbtd" data-count="true" style="display: none;"></div>
- <script src="https://d.line-scdn.net/r/web/social-plugin/js/thirdparty/loader.min.js" async="async" defer="defer"></script>
+     <script src="https://d.line-scdn.net/r/web/social-plugin/js/thirdparty/loader.min.js" async="async" defer="defer"></script>
     </p>
    <img class="qrcode hidden-xs" src="/595zmbtd.png" >
   </div>
+ 
 <div class="col-md-9 col-xs-12">
+  <% @plans.each do |plan| %>
   <%= will_paginate %>
-  <table class="table">
-     <% @plans.each do |plan| %>
+  <div class="row" style="padding: 10px; margin-bottom: 10px; border: 1px solid #333333;"> 
+   <div class="col-md-4 col-xs-12">
+    <div class="picture"><%= image_tag plan.picture.url if plan.picture? %></div>
+     <% if !plan.picture? %>
+      <div class="picture"><img src="/uploads/Noimage_image.png"/></div>
+     <% end %>
+   </div>  
+   <div class="col-md-8 col-xs-12">
+    <table class="table" style="table-layout: fixed;">
      <tr>
        <td><b><span>タイトル:</span></b></td>
        <td><%=plan.purpose%></td>
@@ -62,9 +71,12 @@
        <% else %>
         <td></td>
        <% end %> 
-  <% end %>
-  </table>
+     </table>
+    </div>
+  </div>
   <%= will_paginate %>
+  <% end %>
+  
   <div class="new-point-button-area">
   <%= link_to "ツーリングを企画する",new_plan_path,class: "btn btn-lg btn-primary btn-add" %>
   </div>

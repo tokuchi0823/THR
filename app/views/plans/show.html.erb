@@ -1,9 +1,16 @@
 <% provide(:title, @plan.purpose) %>
 <% require 'date' %>
 
-<h1><%=@plan.purpose%></h1>
- <div class="col-md-12 col-xs-12">
+<h1><span><%=@plan.purpose%></span></h1>
+<div class="col-md-3">
+  <div class="picture"><%= image_tag @plan.picture.url if @plan.picture? %></div>
+  <% if !@plan.picture? %>
+    <div class="picture"><img src="/uploads/Noimage_image.png"/></div>
+  <% end %>
+</div>
+ <div class="col-md-9 col-xs-12">
   <table class="table">
+   
     <tr>
      <td><b><span>日時:</span></b></td>
        <% if l(@plan.meetdate, format: :default).to_s == l(@plan.finish_date, format: :default).to_s%> 
@@ -11,9 +18,6 @@
        <% else %> 
         <td><%=l(@plan.meetdate, format: :long)%>〜<%=l(@plan.finish_date, format: :long)%></td>
        <% end %>
-       <%=@plan.meetdate.prev_day.to_date %>:
-       <%=Time.current.prev_day %>
-       <%=Date.today%>
     </tr>
     <tr>
      <td><b><span>集合場所:</span></b></td>
@@ -57,7 +61,7 @@
     </tr>
     <tr>
       <td><b><span>注意事項:</span></b></td>
-      <td><%=@plan.caution%></td>
+      <td style="white-space:pre-wrap"><%=@plan.caution%></td>
     </tr>
   </table>
   <% if current_user.id.to_s == @plan.secretary_id.to_s%>
