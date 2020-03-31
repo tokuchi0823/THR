@@ -8,5 +8,6 @@ if Rails.env.production?
       :aws_secret_access_key => ENV['S3_SECRET_KEY']
     }
     config.fog_directory     =  ENV['S3_BUCKET']
+    config.asset_host = 'https://thr-app.s3.amazonaws.com' #このように修正
   end
 end
