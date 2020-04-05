@@ -29,21 +29,26 @@
      </tr>
      <tr>
        <td><b><span>ルート:</span></b></td>
-       <td><%=plan.meeting_place%>〜
+       <td><%=plan.meeting_place%>
        <% if plan.passing_point1.present? %>
-        <%=plan.passing_point1%>〜
+       <br>　↓<br>
+        <%=plan.passing_point1%>
        <% end %>  
        <% if plan.passing_point2.present? %>
-        <%=plan.passing_point2%>〜
+       <br>　↓<br>
+        <%=plan.passing_point2%>
        <% end %>  
        <% if plan.passing_point3.present? %>
-        <%=plan.passing_point3%>〜
+       <br>　↓<br>
+        <%=plan.passing_point3%>
        <% end %>  
        <% if plan.passing_point4.present? %>
-        <%=plan.passing_point4%>〜
+       <br>　↓<br>
+        <%=plan.passing_point4%>
        <% end %>  
        <% if plan.passing_point5.present? %>
-        <%=plan.passing_point5%>〜
+       <br>　↓<br>
+        <%=plan.passing_point5%>
        <% end %>  
        <%=plan.destination%></td>
      </tr>
