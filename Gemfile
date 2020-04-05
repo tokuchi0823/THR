@@ -25,7 +25,7 @@ gem 'gmaps4rails'
 gem 'rack-user_agent'
 gem 'whenever', require: false
 gem 'carrierwave','1.2.2'
-gem 'mini_magick','4.7.0'
+gem 'mini_magick','4.9.4'
 gem 'fog-aws','2.0.0'
 gem 'geocoder'
 
