@@ -66,7 +66,7 @@ class PlansController < ApplicationController
   
   def index
     #@plan = Plan.all
-    @plans = Plan.paginate(page: params[:page], per_page: 10).order(created_at: :desc)
+    @plans = Plan.paginate(page: params[:page], per_page: 5).order(created_at: :desc)
   end
   
   def destroy
@@ -77,6 +77,15 @@ class PlansController < ApplicationController
     @plan.destroy
     flash[:success] = "企画を削除しました。"
     redirect_to plans_url(@plan)
+  end
+  
+  def map
+  # respond_to以下の記述によって、
+  # remote: trueのアクセスに対して、
+  # map.js.erbが変えるようになります。
+    respond_to do |format|
+      format.js
+    end
   end
   
 

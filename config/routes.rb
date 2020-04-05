@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   
-  post '/callback' => 'linebot#callback'  
+  post '/callback' => 'linebot#callback' 
+  get '/map_request', to: 'plans#map', as: 'map_request'
   
   resources :sankas, only: [:create, :destroy]
   

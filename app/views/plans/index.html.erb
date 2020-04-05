@@ -12,8 +12,8 @@
   </div>
  
 <div class="col-md-9 col-xs-12">
-  <% @plans.each do |plan| %>
   <%= will_paginate %>
+  <% @plans.each do |plan| %>
   <div class="row" style="padding: 10px; margin-bottom: 10px; border: 1px solid #333333;"> 
    <div class="col-md-4 col-xs-12">
     <div class="picture"><%= image_tag plan.picture.url if plan.picture? %></div>
@@ -74,8 +74,8 @@
      </table>
     </div>
   </div>
-  <%= will_paginate %>
   <% end %>
+   <%= will_paginate %>
   
   <div class="new-point-button-area">
   <%= link_to "ツーリングを企画する",new_plan_path,class: "btn btn-lg btn-primary btn-add" %>
