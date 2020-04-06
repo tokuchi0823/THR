@@ -10,6 +10,7 @@
 </div>
 <div class="col-md-4 col-xs-12">
  <div id='gmap'></div>
+  <a href="https://www.google.com/maps/dir/?api=1&origin=<%=@plan.meeting_place%>&destination=<%=@plan.destination%>&travelmode=driving&waypoints=<%=@plan.passing_point1%>%7C<%=@plan.passing_point2%>%7C<%=@plan.passing_point3%>%7C<%=@plan.passing_point4%>%7C<%=@plan.passing_point5%>" target="_blank">&gt;&gt;大きい地図で見る</a>
  <style>
   #gmap{
    height: 400px;
@@ -63,7 +64,10 @@
         <%=@plan.passing_point5%>
        <% end %>  
        <br>　↓<br>
-       <%=@plan.destination%></td>
+       <%=@plan.destination%>
+       <br>
+       <a href="https://www.google.com/maps/dir/?api=1&origin=<%=@plan.meeting_place%>&destination=<%=@plan.destination%>&travelmode=driving&waypoints=<%=@plan.passing_point1%>%7C<%=@plan.passing_point2%>%7C<%=@plan.passing_point3%>%7C<%=@plan.passing_point4%>%7C<%=@plan.passing_point5%>" target="_blank">&gt;&gt;大きい地図で見る</a>
+       </td>
     </tr>
     <tr>
       <td><b><span>幹事:</span></b></td>
