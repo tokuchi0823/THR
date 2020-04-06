@@ -16,7 +16,10 @@
   }
  </style>
   <table class="table box11">
-   <h2>イベント詳細</h2>
+   <h2 style=" color: #364e96;/*文字色*/
+  padding: 0.5em 0;/*上下の余白*/
+  border-top: solid 3px #364e96;/*上線*/
+  border-bottom: solid 3px #364e96;/*下線*/">イベント詳細</h2>
    <input hidden id="address1" value=<%=@plan.meeting_place%>>
    <input hidden id="address2" value=<%=@plan.passing_point1%>>
    <input hidden id="address3" value=<%=@plan.passing_point2%>>
@@ -222,10 +225,5 @@ function initMap() {
     border-top: solid 5px #5d627b;
     box-shadow: 0 3px 5px rgba(0, 0, 0, 0.22);
 }
-h2 {
-  color: #364e96;/*文字色*/
-  padding: 0.5em 0;/*上下の余白*/
-  border-top: solid 3px #364e96;/*上線*/
-  border-bottom: solid 3px #364e96;/*下線*/
-}
+
 </style>
