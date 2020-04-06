@@ -16,7 +16,7 @@
   <% @plans.each do |plan| %>
   <div class="row box11"> 
    <div class="col-md-4 col-xs-12">
-    <div class="picture picturephone"><%= image_tag plan.picture.url if plan.picture? %></div>
+    <div class="picture picturephone"><%= image_tag plan.picture.url ,:style =>'width: 100%; height: auto;' if plan.picture? %></div>
      <% if !plan.picture? %>
       <div class="picture"><img src="/uploads/Noimage_image.png"/></div>
      <% end %>
