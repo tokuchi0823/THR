@@ -14,7 +14,7 @@
 <div class="col-md-9 col-xs-12">
   <%= will_paginate %>
   <% @plans.each do |plan| %>
-  <div class="row" style="padding: 10px; margin-bottom: 10px; border: 1px solid #333333;"> 
+  <div class="row box11"> 
    <div class="col-md-4 col-xs-12">
     <div class="picture"><%= image_tag plan.picture.url if plan.picture? %></div>
      <% if !plan.picture? %>

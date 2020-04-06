@@ -59,6 +59,9 @@
   <%= f.label :caution, class: "label-#{yield(:class_text)}" %>
   <%= f.text_area :caution, size: "10x10", class: "form-control" %>
   
+  <%= f.label :contact, class: "label-#{yield(:class_text)}" %>
+  <%= f.text_field :contact, class: "form-control" %>
+  
   <%= f.hidden_field :secretary_id, :value => current_user.id%>
 
   <%= f.submit yield(:button_text), class: "btn btn-primary btn-block btn-#{yield(:class_text)}" %>
@@ -75,14 +78,6 @@
 </script>
 
 <script>
-/*
-mapを関数の外で定義(codeAddressでも使うため)
-geocoderを用意
-*/
-
-// let map
-// let geocoder
-
 function initMap() { 
   // 地図を生成して表示
   var map = new google.maps.Map(document.getElementById("gmap"), {
@@ -131,26 +126,6 @@ function initMap() {
           stopover: false
     })
   };
-  // var address3 = document.getElementById('address3');
-  // waypts.push({
-  //       location: address3.value,
-  //       stopover: false
-  // });
-  // var address4 = document.getElementById('address4');
-  // waypts.push({
-  //       location: address4.value,
-  //       stopover: false
-  // });
-  // var address5 = document.getElementById('address5');
-  // waypts.push({
-  //       location: address5.value,
-  //       stopover: false
-  // });
-  // var address6 = document.getElementById('address6');
-  // waypts.push({
-  //       location: address6.value,
-  //       stopover: false
-  // });
   //DirectionsService のオブジェクトを生成
   if (document.getElementById('address1').value !="" && document.getElementById('address7').value !=""){
     var directionsService = new google.maps.DirectionsService();

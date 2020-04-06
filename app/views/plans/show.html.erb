@@ -2,22 +2,35 @@
 <% require 'date' %>
 
 <h1><span><%=@plan.purpose%></span></h1>
-<div class="col-md-3">
+<div class="col-md-4 col-xs-12">
   <div class="picture"><%= image_tag @plan.picture.url if @plan.picture? %></div>
   <% if !@plan.picture? %>
     <div class="picture"><img src="/uploads/Noimage_image.png"/></div>
   <% end %>
 </div>
- <div class="col-md-9 col-xs-12">
-  <table class="table">
-   
+<div class="col-md-4 col-xs-12">
+ <div id='gmap'></div>
+ <style>
+  #gmap{
+   height: 400px;
+  }
+ </style>
+  <table class="table box11">
+   <h2>イベント詳細</h2>
+   <input hidden id="address1" value=<%=@plan.meeting_place%>>
+   <input hidden id="address2" value=<%=@plan.passing_point1%>>
+   <input hidden id="address3" value=<%=@plan.passing_point2%>>
+   <input hidden id="address4" value=<%=@plan.passing_point3%>>
+   <input hidden id="address5" value=<%=@plan.passing_point4%>>
+   <input hidden id="address6" value=<%=@plan.passing_point5%>>
+   <input hidden id="address7" value=<%=@plan.destination%>>
     <tr>
      <td><b><span>日時:</span></b></td>
-       <% if l(@plan.meetdate, format: :default).to_s == l(@plan.finish_date, format: :default).to_s%> 
-        <td><%=l(@plan.meetdate, format: :long)%>〜<%=l(@plan.finish_date, format: :time)%></td>
-       <% else %> 
-        <td><%=l(@plan.meetdate, format: :long)%>〜<%=l(@plan.finish_date, format: :long)%></td>
-       <% end %>
+     <% if l(@plan.meetdate, format: :default).to_s == l(@plan.finish_date, format: :default).to_s%> 
+      <td><%=l(@plan.meetdate, format: :long)%>〜<%=l(@plan.finish_date, format: :time)%></td>
+     <% else %> 
+      <td><%=l(@plan.meetdate, format: :long)%>〜<%=l(@plan.finish_date, format: :long)%></td>
+     <% end %>
     </tr>
     <tr>
      <td><b><span>集合場所:</span></b></td>
@@ -46,6 +59,7 @@
        <br>　↓<br>
         <%=@plan.passing_point5%>
        <% end %>  
+       <br>　↓<br>
        <%=@plan.destination%></td>
     </tr>
     <tr>
@@ -68,11 +82,15 @@
       <td><b><span>注意事項:</span></b></td>
       <td style="white-space:pre-wrap"><%=@plan.caution%></td>
     </tr>
+    <tr>
+      <td><b><span>幹事連絡先:</span></b></td>
+      <td style="white-space:pre-wrap"><%=@plan.contact%></td>
+    </tr>
   </table>
   <% if current_user.id.to_s == @plan.secretary_id.to_s%>
     <%= link_to "修正", edit_plan_path(@plan) ,class: "btn btn-primary btn-other"%>
     <% if @plan.deadline_date && Date.current >= @plan.deadline_date %>
-    <input class="btn btn-primary btn-other" type="button"  value="こちらのツーリングは締め切られました。" disabled>
+     <input class="btn btn-primary btn-other" type="button"  value="こちらのツーリングは締め切られました。" disabled>
   　 <% end %>
   <% else %>
     <% if @plan.deadline_date && Date.current >= @plan.deadline_date %>
@@ -80,33 +98,117 @@
     <% else %>
      <%= render "sankas/sanka", plan: @plan %>
     <% end %>
-   <% end %>
-   <br><b>現在の参加予定人数：<%=@plan.sankas_count+1%></b><br>
-      <% Sanka.where(plan_id: @plan.id).each do |sanka| %>
-      <div style="padding: 10px; margin-bottom: 10px; border: 1px solid #333333;">
-       <b>名前:<%=User.find(sanka.user_id).name%></b><br>
-          ・バイク：<%=User.find(sanka.user_id).bike%><br>
-          ・排気量：<%=User.find(sanka.user_id).displacement%><br>
-          <% if User.find(sanka.user_id).intercom? %>
-          ・インカム持ち<br>
-          <% end %>
-          <% if User.find(sanka.user_id).etc? %>
-          ・ETCあり<br>
-          <% end %>
-          <% if User.find(sanka.user_id).navi? %>
-          ・ナビあり<br>
-          <% end %>
-          <% if User.find(sanka.user_id).continuous_cruising_distance.present? %>
-          ・継続巡航距離:<%=User.find(sanka.user_id).continuous_cruising_distance%>Km<br>
-          <% end %>
-          コメント<br>
-          <%=sanka.comment%> 
-      </div>
-     <% end %>
+  <% end %>
 </div>
- 
+<div class="col-md-4 col-xs-12">
+ <br><b>現在の参加予定人数：<%=@plan.sankas_count+1%></b><br>
+ <% Sanka.where(plan_id: @plan.id).each do |sanka| %>
+  <div class="box11">
+   <b>名前:<%=User.find(sanka.user_id).name%></b><br>
+      ・バイク：<%=User.find(sanka.user_id).bike%><br>
+      ・排気量：<%=User.find(sanka.user_id).displacement%><br>
+      <% if User.find(sanka.user_id).intercom? %>
+       ・インカム持ち<br>
+      <% end %>
+      <% if User.find(sanka.user_id).etc? %>
+       ・ETCあり<br>
+      <% end %>
+      <% if User.find(sanka.user_id).navi? %>
+       ・ナビあり<br>
+      <% end %>
+      <% if User.find(sanka.user_id).continuous_cruising_distance.present? %>
+       ・継続巡航距離:<%=User.find(sanka.user_id).continuous_cruising_distance%>Km<br>
+      <% end %>
+      コメント<br>
+      <%=sanka.comment%> 
+  </div>
+ <% end %>
+</div>
 <!--モーダルウインドウ表示-->
 <div id="edit-zangyo-info" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
 <div id="approval-zangyo-info" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
 <div id="approval-change-info" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
 <div id="approval-one-month-info" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true"></div>
+
+<script>
+function initMap() { 
+  // 地図を生成して表示
+  var map = new google.maps.Map(document.getElementById("gmap"), {
+    zoom: 13,
+    center:{lat: 35.710033, lng: 139.810716 },
+    mapTypeId: "roadmap"
+  });
+  
+  var waypts = [];
+  var address2 = document.getElementById('address2');
+  if (address2.value !=""){
+    waypts.push({
+          location: address2.value,
+          stopover: false
+    })
+  };
+  
+  var address3 = document.getElementById('address3');
+  if (address3.value !=""){
+    waypts.push({
+          location: address3.value,
+          stopover: false
+    })
+  };
+  
+  var address4 = document.getElementById('address4');
+  if (address4.value !=""){
+    waypts.push({
+          location: address4.value,
+          stopover: false
+    })
+  };
+  
+  var address5 = document.getElementById('address5');
+  if (address5.value !=""){
+    waypts.push({
+          location: address5.value,
+          stopover: false
+    })
+  };
+  
+  var address6 = document.getElementById('address6');
+  if (address6.value !=""){
+    waypts.push({
+          location: address6.value,
+          stopover: false
+    })
+  };
+  //DirectionsService のオブジェクトを生成
+  if (document.getElementById('address1').value !="" && document.getElementById('address7').value !=""){
+    var directionsService = new google.maps.DirectionsService();
+    //DirectionsRenderer のオブジェクトを生成
+    var directionsRenderer = new google.maps.DirectionsRenderer();
+    //directionsRenderer と地図を紐付け
+    directionsRenderer.setMap(map);  
+    
+    // ルートを取得するリクエスト
+    var request = {
+      origin: document.getElementById('address1').value,      // 出発地点
+      destination: document.getElementById('address7').value,
+      waypoints: waypts,
+      travelMode: 'DRIVING'// 到着地点
+      // avoidFerries: false,
+      // avoidHighways: false,
+      // avoidTolls: false,
+    };
+    
+    //DirectionsService のオブジェクトのメソッド route() にリクエストを渡し、
+    //コールバック関数で結果を setDirections(result) で directionsRenderer にセットして表示
+    directionsService.route(request, function(result, status) {
+      //ステータスがOKの場合、
+      if (status === 'OK') {
+        directionsRenderer.setDirections(result); //取得したルート（結果：result）をセット
+      }else{
+        alert("取得できませんでした：" + status);
+      }
+    });
+  }
+}
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB-_U7Sqau0D9Ve36ou981kM5llfUNwcj4&callback=initMap" async defer></script>
