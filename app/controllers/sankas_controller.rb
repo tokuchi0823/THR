@@ -51,7 +51,7 @@ class SankasController < ApplicationController
   def message_reject 
   {
    type: 'text',
-   text: '以下の企画への参加が拒否されました。'
+   text: "以下の企画への参加が拒否されました。\n「" + @plan.purpose + "」"
   }
   end
   
