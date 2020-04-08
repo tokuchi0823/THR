@@ -36,6 +36,7 @@ class SankasController < ApplicationController
     else
       @plan.unsanka(@user)
       flash[:success] = "参加を拒否しました。"
+      notification_reject
       @plan.reload
       redirect_to @plan
     end
