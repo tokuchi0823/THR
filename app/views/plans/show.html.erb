@@ -113,7 +113,12 @@
 <div class="midasi">現在の参加予定人数：<%=@plan.sankas_count+1%></div>
  <% Sanka.where(plan_id: @plan.id).each do |sanka| %>
   <div class="box12">
-   <b>名前:<%=User.find(sanka.user_id).name%></b><br>
+   <% if !User.find(sanka.user_id).image? %>
+    <a class="image"><img src="/uploads/Noimage_image.png" style="width: 40px; height: 40px;object-fit: cover; border-radius: 50%;"/></a>
+  <% else %>
+    <a class="image"><%= image_tag User.find(sanka.user_id).image.url, :style =>'width: 40px; height: 40px;object-fit: cover; border-radius: 50%;' %></a>
+  <% end %>
+   <b><%=User.find(sanka.user_id).name%></b><br>
       ・バイク：<%=User.find(sanka.user_id).bike%><br>
       ・排気量：<%=User.find(sanka.user_id).displacement%><br>
       <% if User.find(sanka.user_id).intercom? %>
@@ -128,7 +133,6 @@
       <% if User.find(sanka.user_id).continuous_cruising_distance.present? %>
        ・継続巡航距離:<%=User.find(sanka.user_id).continuous_cruising_distance%>Km<br>
       <% end %>
-      コメント<br>
       <%=sanka.comment%> 
   </div>
  <% end %>
