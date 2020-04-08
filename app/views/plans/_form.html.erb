@@ -1,8 +1,9 @@
 <%= form_with(model: @plan, local: true) do |f| %>
-
-<div id='gmap' class="col-md-6"></div>
+ <%= render 'shared/error_messages_plan', object: @plan %>
+ <div class="col-md-6">
+<div id='gmap'></div>
 <!-- 地名入力用のinputを追加 -->
-<!-- <input id="address" type="textbox" value="Sydney, NSW" onBlur="codeAddress()">　-->
+<!-- <input id="address" type="textbox" value="Sydney, NSW" onChange="codeAddress()">　-->
 
 <!-- buttonをクリックしたらcodeAddressを実行　-->
 <!--<input type="button" value="Encode" onclick="codeAddress()">　-->
@@ -12,10 +13,38 @@
   height: 400px;
 }
 </style>
+ <div>不使用</div>
+ <div>
+    <input  name="plan[avoidferries]" type="hidden" value="0" />
+    <% if @plan.avoidferries %>
+      <input id="avoidferries" type="checkbox" value="1" checked="checked" name="plan[avoidferries]" onChange="initMap()" />
+    <% else %>
+      <input id="avoidferries" type="checkbox" value="1" name="plan[avoidferries]" onChange="initMap()" />
+    <% end %>
+    <%= f.label:avoidferries, class: "label-#{yield(:class_text)}" %>
+  </div>
+  <div>
+    <input name="plan[avoidhighways]" type="hidden" value="0" />
+    <% if @plan.avoidhighways %>
+      <input id="avoidhighways" type="checkbox" value="1" checked="checked" name="plan[avoidhighways]" onChange="initMap()" />
+    <% else %>
+      <input id="avoidhighways" type="checkbox" value="1" name="plan[avoidhighways]" onChange="initMap()" />
+    <% end %>
+    <%= f.label:avoidhighways, class: "label-#{yield(:class_text)}" %>
+  </div>
+  <div>
+    <input name="plan[avoidtolls]" type="hidden" value="0" />
+    <% if @plan.avoidtolls %>
+      <input id="avoidtolls" type="checkbox" value="1" checked="checked" name="plan[avoidtolls]" onChange="initMap()" />
+    <% else %>
+      <input id="avoidtolls" type="checkbox" value="1" name="plan[avoidtolls]" onChange="initMap()" />
+    <% end %>
+    <%= f.label:avoidtolls, class: "label-#{yield(:class_text)}" %>
+  </div>
+</div>
 
- <%= render 'shared/error_messages_plan', object: @plan %>
 <div class="col-md-6">
-  <%= image_tag @plan.picture %>
+  <%= image_tag @plan.picture,:style =>'width: 100%; height: auto;' %>
   <span class="picture">
     <%= f.file_field :picture, accept: 'image/jpeg,image/gif,image/png'  %>
   </span>
@@ -33,25 +62,25 @@
   <%= f.datetime_field :finish_date, class: "form-control" %>
   
   <%= f.label :meeting_place, class: "label-#{yield(:class_text)}"%>
-  <input id="address1" type="textbox" onBlur="initMap()" class="form-control" name="plan[meeting_place]" value=<%=@plan.meeting_place%>>
+  <input id="address1" type="textbox" onChange="initMap()" class="form-control" name="plan[meeting_place]" value=<%=@plan.meeting_place%>>
   
   <%= f.label:passing_point1, class: "label-#{yield(:class_text)}" %>
-  <input id="address2" type="textbox" onBlur="initMap()" class="form-control" name="plan[passing_point1]" value=<%=@plan.passing_point1%>>
+  <input id="address2" type="textbox" onChange="initMap()" class="form-control" name="plan[passing_point1]" value=<%=@plan.passing_point1%>>
 
   <%= f.label:passing_point2, class: "label-#{yield(:class_text)}" %>
-  <input id="address3" type="textbox" onBlur="initMap()" class="form-control" name="plan[passing_point2]" value=<%=@plan.passing_point2%>>
+  <input id="address3" type="textbox" onChange="initMap()" class="form-control" name="plan[passing_point2]" value=<%=@plan.passing_point2%>>
   
   <%= f.label:passing_point3, class: "label-#{yield(:class_text)}" %>
-  <input id="address4" type="textbox" onBlur="initMap()" class="form-control" name="plan[passing_point3]" value=<%=@plan.passing_point3%>>
+  <input id="address4" type="textbox" onChange="initMap()" class="form-control" name="plan[passing_point3]" value=<%=@plan.passing_point3%>>
   
   <%= f.label:passing_point4, class: "label-#{yield(:class_text)}" %>
-  <input id="address5" type="textbox" onBlur="initMap()"class="form-control" name="plan[passing_point4]" value=<%=@plan.passing_point4%>>
+  <input id="address5" type="textbox" onChange="initMap()"class="form-control" name="plan[passing_point4]" value=<%=@plan.passing_point4%>>
   
   <%= f.label:passing_point5, class: "label-#{yield(:class_text)}" %>
-  <input id="address6" type="textbox" onBlur="initMap()" class="form-control" name="plan[passing_point5]" value=<%=@plan.passing_point5%>>
+  <input id="address6" type="textbox" onChange="initMap()" class="form-control" name="plan[passing_point5]" value=<%=@plan.passing_point5%>>
   
   <%= f.label:destination, class: "label-#{yield(:class_text)}" %>
-  <input id="address7" type="textbox" onBlur="initMap()" class="form-control" name="plan[destination]" value=<%=@plan.destination%>>
+  <input id="address7" type="textbox" onChange="initMap()" class="form-control" name="plan[destination]" value=<%=@plan.destination%>>
   
   <%= f.label :deadline_date, class: "label-#{yield(:class_text)}" %>
   <%= f.datetime_field :deadline_date, class: "form-control" %>
@@ -134,15 +163,18 @@ function initMap() {
     //directionsRenderer と地図を紐付け
     directionsRenderer.setMap(map);  
     
+    const avoidferries = document.getElementById("avoidferries");
+    const avoidhighways = document.getElementById("avoidhighways");
+    const avoidtolls = document.getElementById("avoidtolls");
     // ルートを取得するリクエスト
     var request = {
       origin: document.getElementById('address1').value,      // 出発地点
       destination: document.getElementById('address7').value,
       waypoints: waypts,
-      travelMode: 'DRIVING'// 到着地点
-      // avoidFerries: false,
-      // avoidHighways: false,
-      // avoidTolls: false,
+      travelMode: 'DRIVING',// 到着地点
+      avoidFerries: avoidferries.checked,
+      avoidHighways: avoidhighways.checked,
+      avoidTolls: avoidtolls.checked,
     };
     
     //DirectionsService のオブジェクトのメソッド route() にリクエストを渡し、

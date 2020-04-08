@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200406020911) do
+ActiveRecord::Schema.define(version: 20200407152122) do
 
   create_table "attendances", force: :cascade do |t|
     t.date "worked_on"
@@ -58,6 +58,9 @@ ActiveRecord::Schema.define(version: 20200406020911) do
     t.integer "displacement_limit"
     t.string "picture"
     t.string "contact"
+    t.boolean "avoidferries", default: false
+    t.boolean "avoidhighways", default: false
+    t.boolean "avoidtolls", default: false
   end
 
   create_table "sankas", force: :cascade do |t|

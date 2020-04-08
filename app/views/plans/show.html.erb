@@ -10,7 +10,7 @@
 </div>
 <div class="col-md-4 col-xs-12">
  <div id='gmap'></div>
-  <a href="https://www.google.com/maps/dir/?api=1&origin=<%=@plan.meeting_place%>&destination=<%=@plan.destination%>&travelmode=driving&waypoints=<%=@plan.passing_point1%>%7C<%=@plan.passing_point2%>%7C<%=@plan.passing_point3%>%7C<%=@plan.passing_point4%>%7C<%=@plan.passing_point5%>" target="_blank">&gt;&gt;大きい地図で見る</a>
+  <a href="http://maps.google.com/maps?saddr=<%=@plan.meeting_place%>&daddr=<% if @plan.passing_point1 !="" %><%=@plan.passing_point1%>+to:<% end %><% if @plan.passing_point2 !="" %><%=@plan.passing_point2%>+to:<% end %><% if @plan.passing_point3 !="" %><%=@plan.passing_point3%>+to:<% end %><% if @plan.passing_point4 !="" %><%=@plan.passing_point4%>+to:<% end %><% if @plan.passing_point5 !="" %><%=@plan.passing_point5%>+to:<% end %><%=@plan.destination%>&dirflg=d<% if @plan.avoidferries %>f<% end %><% if @plan.avoidhighways %>h<% end %><% if @plan.avoidtolls %>t<% end %>" target="_blank">&gt;&gt;大きい地図で見る</a>
  <style>
   #gmap{
    height: 400px;
@@ -28,6 +28,9 @@
    <input hidden id="address5" value=<%=@plan.passing_point4%>>
    <input hidden id="address6" value=<%=@plan.passing_point5%>>
    <input hidden id="address7" value=<%=@plan.destination%>>
+   <input hidden id="avoidferries" value=<%=@plan.avoidferries%>>
+   <input hidden id="avoidhighways" value=<%=@plan.avoidhighways%>>
+   <input hidden id="avoidtolls" value=<%=@plan.avoidtolls%>>
     <tr>
      <td><b><span>日時:</span></b></td>
      <% if l(@plan.meetdate, format: :default).to_s == l(@plan.finish_date, format: :default).to_s%> 
@@ -66,8 +69,7 @@
        <br>　↓<br>
        <%=@plan.destination%>
        <br>
-       <a href="https://www.google.com/maps/dir/?api=1&origin=<%=@plan.meeting_place%>&destination=<%=@plan.destination%>&travelmode=driving&waypoints=<%=@plan.passing_point1%>%7C<%=@plan.passing_point2%>%7C<%=@plan.passing_point3%>%7C<%=@plan.passing_point4%>%7C<%=@plan.passing_point5%>" target="_blank">&gt;&gt;大きい地図で見る</a>
-       </td>
+         <a href="http://maps.google.com/maps?saddr=<%=@plan.meeting_place%>&daddr=<% if @plan.passing_point1 !="" %><%=@plan.passing_point1%>+to:<% end %><% if @plan.passing_point2 !="" %><%=@plan.passing_point2%>+to:<% end %><% if @plan.passing_point3 !="" %><%=@plan.passing_point3%>+to:<% end %><% if @plan.passing_point4 !="" %><%=@plan.passing_point4%>+to:<% end %><% if @plan.passing_point5 !="" %><%=@plan.passing_point5%>+to:<% end %><%=@plan.destination%>&dirflg=d<% if @plan.avoidferries %>f<% end %><% if @plan.avoidhighways %>h<% end %><% if @plan.avoidtolls %>t<% end %>" target="_blank">&gt;&gt;大きい地図で見る</a>       </td>
     </tr>
     <tr>
       <td><b><span>幹事:</span></b></td>
@@ -194,15 +196,24 @@ function initMap() {
     //directionsRenderer と地図を紐付け
     directionsRenderer.setMap(map);  
     
+    // const avoidferries = document.getElementById("avoidferries").value;
+    // const avoidhighways = document.getElementById("avoidhighways").value;
+    // const avoidtolls = document.getElementById("avoidtolls").value;
+     function parseStrToBoolean(str) {
+        // 文字列を判定
+        return (str == 'true') ? true : false;
+ 
+    }
+    
     // ルートを取得するリクエスト
     var request = {
       origin: document.getElementById('address1').value,      // 出発地点
       destination: document.getElementById('address7').value,
       waypoints: waypts,
-      travelMode: 'DRIVING'// 到着地点
-      // avoidFerries: false,
-      // avoidHighways: false,
-      // avoidTolls: false,
+      travelMode: 'DRIVING',// 到着地点
+      avoidFerries: parseStrToBoolean(document.getElementById('avoidferries').value),
+      avoidHighways: parseStrToBoolean(document.getElementById('avoidhighways').value),
+      avoidTolls: parseStrToBoolean(document.getElementById('avoidtolls').value),
     };
     
     //DirectionsService のオブジェクトのメソッド route() にリクエストを渡し、

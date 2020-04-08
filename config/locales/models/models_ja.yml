@@ -44,6 +44,9 @@ ja:
           deadline_date: 募集締め切り日
           caution: 注意事項
           contact: 幹事連絡先
+          avoidferries: フェリー
+          avoidhighways: 高速道路
+          avoidtolls: 有料道路
         sanka:
           comment: コメント
           
