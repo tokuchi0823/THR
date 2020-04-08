@@ -4,7 +4,6 @@ Rails.application.routes.draw do
   get '/map_request', to: 'plans#map', as: 'map_request'
   
   resources :sankas, only: [:create, :destroy]
-  delete 'sanka/delete', to: 'sankas#delete'
   
   get 'basic_pages/basic'
 
