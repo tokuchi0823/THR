@@ -12,6 +12,8 @@ class SankasController < ApplicationController
   def notification_reject
     client.push_message(@user.line_id,message_reject)
   end
+  
+  helper_method :notification_reject
 
   def create
     @plan = Plan.find(params[:plan_id])

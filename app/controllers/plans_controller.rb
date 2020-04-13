@@ -27,6 +27,8 @@ class PlansController < ApplicationController
   
    helper_method :notification
    helper_method :notification_edit
+   helper_method :notification_update
+   helper_method :notification_delete
   
   def show
     @plan = Plan.find(params[:id])
