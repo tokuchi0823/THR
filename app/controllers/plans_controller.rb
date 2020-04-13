@@ -48,7 +48,7 @@ class PlansController < ApplicationController
     if @plan.update_attributes(plan_params)
       flash[:success] = "ツーリング企画を更新しました。"
       userid = Sanka.where(plan_id: @plan.id).pluck(:user_id)
-      ids = User.where(id: userid).pluck(:line_id)
+      ids = User.where(id: userid).where.not(line_id: nil).pluck(:line_id)
       notification_update(ids)
       redirect_to plans_url(@plan)
     else
@@ -75,7 +75,7 @@ class PlansController < ApplicationController
   def destroy
     @plan = Plan.find(params[:id])
     userid = Sanka.where(plan_id: @plan.id).pluck(:user_id)
-    ids = User.where(id: userid).pluck(:line_id)
+    ids = User.where(id: userid).where.not(line_id: nil).pluck(:line_id)
     notification_delete(ids)
     @plan.destroy
     flash[:success] = "企画を削除しました。"
