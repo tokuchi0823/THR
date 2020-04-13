@@ -56,11 +56,19 @@
   <%= f.text_area :overview, size: "10x10", class: "form-control" %>
 
   <%= f.label :meetdate, class: "label-#{yield(:class_text)}" %>
-  <%= f.datetime_field :meetdate, class: "form-control" %>
+  <% if @plan.meetdate.nil?%>
+    <input type="datetime-local" class="form-control" name="plan[meetdate]" value=<%=Time.current.try(:strftime, '%Y-%m-%dT%H:%M') %>>
+  <% else %>
+    <input type="datetime-local" class="form-control" name="plan[meetdate]" value=<%=@plan.meetdate.try(:strftime, '%Y-%m-%dT%H:%M')%>>
+  <% end %>
   
   <%= f.label :finish_date, class: "label-#{yield(:class_text)}" %>
-  <%= f.datetime_field :finish_date, class: "form-control" %>
-  
+  <% if @plan.finish_date.nil?%>
+    <input type="datetime-local" class="form-control" name="plan[finish_date]" value=<%=Time.current.try(:strftime, '%Y-%m-%dT%H:%M') %>>
+  <% else %>
+    <input type="datetime-local" class="form-control" name="plan[finish_date]" value=<%=@plan.finish_date.try(:strftime, '%Y-%m-%dT%H:%M')%>>
+  <% end %>
+   
   <%= f.label :meeting_place, class: "label-#{yield(:class_text)}"%>
   <input id="address1" type="textbox" onChange="initMap()" class="form-control" name="plan[meeting_place]" value=<%=@plan.meeting_place%>>
   
@@ -83,7 +91,11 @@
   <input id="address7" type="textbox" onChange="initMap()" class="form-control" name="plan[destination]" value=<%=@plan.destination%>>
   
   <%= f.label :deadline_date, class: "label-#{yield(:class_text)}" %>
-  <%= f.datetime_field :deadline_date, class: "form-control" %>
+  <% if @plan.deadline_date.nil?%>
+    <input type="datetime-local" class="form-control" name="plan[deadline_date]" value=<%=Time.current.try(:strftime, '%Y-%m-%dT%H:%M') %>>
+  <% else %>
+    <input type="datetime-local" class="form-control" name="plan[deadline_date]" value=<%=@plan.deadline_date.try(:strftime, '%Y-%m-%dT%H:%M')%>>
+  <% end %>
   
   <%= f.label :caution, class: "label-#{yield(:class_text)}" %>
   <%= f.text_area :caution, size: "10x10", class: "form-control" %>

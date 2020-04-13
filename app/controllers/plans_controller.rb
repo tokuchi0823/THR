@@ -18,7 +18,6 @@ class PlansController < ApplicationController
   end
   
   def notification_update(ids)
-    puts ids
     client.multicast(ids,message_update)
   end
   
