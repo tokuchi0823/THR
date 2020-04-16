@@ -12,16 +12,16 @@
 </div>
 
 <div class="col-md-6 col-xs-12">
-  <%= f.label :name, class: "label-#{yield(:class_text)}" %>
+  <span class="must">必須</span><%= f.label :name, class: "label-#{yield(:class_text)}" %>
   <%= f.text_field :name, class: "form-control" %>
 
-  <%= f.label :email, class: "label-#{yield(:class_text)}" %>
+  <span class="must">必須</span><%= f.label :email, class: "label-#{yield(:class_text)}" %>
   <%= f.email_field :email, class: "form-control" %>
   
-  <%= f.label :bike, class: "label-#{yield(:class_text)}" %>
+  <span class="free">任意</span><%= f.label :bike, class: "label-#{yield(:class_text)}" %>
   <%= f.text_field :bike, class: "form-control" %>
   
-  <%= f.label:displacement, class: "label-#{yield(:class_text)}" %>
+  <span class="free">任意</span><%= f.label:displacement, class: "label-#{yield(:class_text)}" %>
   <%= f.number_field :displacement, class: "form-control" %>
   
   <div>
@@ -39,13 +39,13 @@
     <%= f.check_box :navi %>
   </div>
   
-  <%= f.label:continuous_cruising_distance, class: "label-#{yield(:class_text)}" %>
+  <span class="free">任意</span><%= f.label:continuous_cruising_distance, class: "label-#{yield(:class_text)}" %>
   <%= f.number_field :continuous_cruising_distance, class: "form-control" %>
   
-  <%= f.label :password, class: "label-#{yield(:class_text)}" %>
+  <span class="must">必須</span><%= f.label :password, class: "label-#{yield(:class_text)}" %>
   <%= f.password_field :password, class: "form-control" %>
 
-  <%= f.label :password_confirmation, class: "label-#{yield(:class_text)}" %>
+  <span class="must">必須</span><%= f.label :password_confirmation, class: "label-#{yield(:class_text)}" %>
   <%= f.password_field :password_confirmation, class: "form-control" %>
 
   <%= f.submit yield(:button_text), class: "btn btn-primary btn-block btn-#{yield(:class_text)}" %>
@@ -71,3 +71,36 @@
     }
   });
 </script>
+
+<style>
+
+/* 必須マーク */
+.must {
+	background: #FF1A00;
+}
+
+/* 任意マーク */
+.free {
+	background: #999;
+}
+
+.must,
+.free {
+	color: #FFF;
+	border-radius: 3px;
+	font-size: 12px;
+	margin-right: 10px;
+	padding: 5px 10px;
+	letter-spacing: 0.2em;
+}
+
+#wrapper {
+      height: 550px;
+      overflow-y: scroll;
+}
+
+#contents {
+      background-color: cadetblue;
+}
+
+</style>

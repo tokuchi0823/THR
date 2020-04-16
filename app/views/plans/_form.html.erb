@@ -12,6 +12,36 @@
 #gmap{
   height: 400px;
 }
+
+/* 必須マーク */
+.must {
+	background: #FF1A00;
+}
+
+/* 任意マーク */
+.free {
+	background: #999;
+}
+
+.must,
+.free {
+	color: #FFF;
+	border-radius: 3px;
+	font-size: 12px;
+	margin-right: 10px;
+	padding: 5px 10px;
+	letter-spacing: 0.2em;
+}
+
+#wrapper {
+      height: 550px;
+      overflow-y: scroll;
+}
+
+#contents {
+      background-color: cadetblue;
+}
+
 </style>
  <div>不使用</div>
  <div>
@@ -43,65 +73,73 @@
   </div>
 </div>
 
-<div class="col-md-6">
+<div class="col-md-6" id="wrapper"">
   <%= image_tag @plan.picture,:style =>'width: 100%; height: auto;' %>
   <span class="picture">
     <%= f.file_field :picture, accept: 'image/jpeg,image/gif,image/png'  %>
   </span>
 
-  <%= f.label :purpose, class: "label-#{yield(:class_text)}" %>
-  <%= f.text_field :purpose, class: "form-control" %>
+  <span class="must">必須</span><%= f.label :purpose, class: "label-#{yield(:class_text)}" %>
+  <%= f.text_field :purpose, class: "form-control", :placeholder => "例）江ノ島に行ってシラス丼を食べよう" %>
   
-  <%= f.label :overview, class: "label-#{yield(:class_text)}" %>
-  <%= f.text_area :overview, size: "10x10", class: "form-control" %>
+  <span class="free">任意</span><%= f.label :overview, class: "label-#{yield(:class_text)}" %>
+  <%= f.text_area :overview, size: "10x10", class: "form-control", :placeholder => "例）
+江ノ島に行ってシラス丼を食べよう!
+ 集合場所：東京スカイツリー
+ 　顔合わせ＆自己紹介の後出発します。
+ 　横須賀を経由し江ノ島に向かいます！
+" %>
 
-  <%= f.label :meetdate, class: "label-#{yield(:class_text)}" %>
+  <span class="must">必須</span><%= f.label :meetdate, class: "label-#{yield(:class_text)}" %>
   <% if @plan.meetdate.nil?%>
     <input type="datetime-local" class="form-control" name="plan[meetdate]" value=<%=Time.current.try(:strftime, '%Y-%m-%dT%H:%M') %>>
   <% else %>
     <input type="datetime-local" class="form-control" name="plan[meetdate]" value=<%=@plan.meetdate.try(:strftime, '%Y-%m-%dT%H:%M')%>>
   <% end %>
   
-  <%= f.label :finish_date, class: "label-#{yield(:class_text)}" %>
+  <span class="must">必須</span><%= f.label :finish_date, class: "label-#{yield(:class_text)}" %>
   <% if @plan.finish_date.nil?%>
     <input type="datetime-local" class="form-control" name="plan[finish_date]" value=<%=Time.current.try(:strftime, '%Y-%m-%dT%H:%M') %>>
   <% else %>
     <input type="datetime-local" class="form-control" name="plan[finish_date]" value=<%=@plan.finish_date.try(:strftime, '%Y-%m-%dT%H:%M')%>>
   <% end %>
    
-  <%= f.label :meeting_place, class: "label-#{yield(:class_text)}"%>
-  <input id="address1" type="textbox" onChange="initMap()" class="form-control" name="plan[meeting_place]" value=<%=@plan.meeting_place%>>
+  <span class="must">必須</span><%= f.label :meeting_place, class: "label-#{yield(:class_text)}"%>
+  <input id="address1" type="textbox" onChange="initMap()" class="form-control" name="plan[meeting_place]" placeholder="例）東京スカイツリー" value=<%=@plan.meeting_place%>>
   
-  <%= f.label:passing_point1, class: "label-#{yield(:class_text)}" %>
-  <input id="address2" type="textbox" onChange="initMap()" class="form-control" name="plan[passing_point1]" value=<%=@plan.passing_point1%>>
+  <span class="free">任意</span><%= f.label:passing_point1, class: "label-#{yield(:class_text)}" %>
+  <input id="address2" type="textbox" onChange="initMap()" class="form-control" name="plan[passing_point1]" placeholder="例）横須賀" value=<%=@plan.passing_point1%>>
 
-  <%= f.label:passing_point2, class: "label-#{yield(:class_text)}" %>
+  <span class="free">任意</span><%= f.label:passing_point2, class: "label-#{yield(:class_text)}" %>
   <input id="address3" type="textbox" onChange="initMap()" class="form-control" name="plan[passing_point2]" value=<%=@plan.passing_point2%>>
   
-  <%= f.label:passing_point3, class: "label-#{yield(:class_text)}" %>
+  <span class="free">任意</span><%= f.label:passing_point3, class: "label-#{yield(:class_text)}" %>
   <input id="address4" type="textbox" onChange="initMap()" class="form-control" name="plan[passing_point3]" value=<%=@plan.passing_point3%>>
   
-  <%= f.label:passing_point4, class: "label-#{yield(:class_text)}" %>
+  <span class="free">任意</span><%= f.label:passing_point4, class: "label-#{yield(:class_text)}" %>
   <input id="address5" type="textbox" onChange="initMap()"class="form-control" name="plan[passing_point4]" value=<%=@plan.passing_point4%>>
   
-  <%= f.label:passing_point5, class: "label-#{yield(:class_text)}" %>
+  <span class="free">任意</span><%= f.label:passing_point5, class: "label-#{yield(:class_text)}" %>
   <input id="address6" type="textbox" onChange="initMap()" class="form-control" name="plan[passing_point5]" value=<%=@plan.passing_point5%>>
   
-  <%= f.label:destination, class: "label-#{yield(:class_text)}" %>
-  <input id="address7" type="textbox" onChange="initMap()" class="form-control" name="plan[destination]" value=<%=@plan.destination%>>
+  <span class="must">必須</span><%= f.label:destination, class: "label-#{yield(:class_text)}" %>
+  <input id="address7" type="textbox" onChange="initMap()" class="form-control" name="plan[destination]" placeholder="例）江ノ島" value=<%=@plan.destination%>>
   
-  <%= f.label :deadline_date, class: "label-#{yield(:class_text)}" %>
+  <span class="must">必須</span><%= f.label :deadline_date, class: "label-#{yield(:class_text)}" %>
   <% if @plan.deadline_date.nil?%>
     <input type="datetime-local" class="form-control" name="plan[deadline_date]" value=<%=Time.current.try(:strftime, '%Y-%m-%dT%H:%M') %>>
   <% else %>
     <input type="datetime-local" class="form-control" name="plan[deadline_date]" value=<%=@plan.deadline_date.try(:strftime, '%Y-%m-%dT%H:%M')%>>
   <% end %>
   
-  <%= f.label :caution, class: "label-#{yield(:class_text)}" %>
-  <%= f.text_area :caution, size: "10x10", class: "form-control" %>
+  <span class="free">任意</span><%= f.label :caution, class: "label-#{yield(:class_text)}" %>
+  <%= f.text_area :caution, size: "10x10", class: "form-control", :placeholder => "例）
+・違法改造車の参加お断り
+・暴走行為は禁止です。
+・時間厳守" %>
   
-  <%= f.label :contact, class: "label-#{yield(:class_text)}" %>
-  <%= f.text_field :contact, class: "form-control" %>
+  <span class="free">任意</span><%= f.label :contact, class: "label-#{yield(:class_text)}" %>
+  <%= f.text_field :contact, class: "form-control", :placeholder => "例）LINEID：XXX or XXXX@XXX.com" %>
   
   <%= f.hidden_field :secretary_id, :value => current_user.id%>
 
