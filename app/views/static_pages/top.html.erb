@@ -5,7 +5,7 @@
    <div class="overlay">
     <h1>Twenty Hearts Riders</h1>
     <a class="btn btn-lg btn-primary" href="/login">ログイン</a>
-    <p>アカウント作成は<%= link_to "こちら", signup_path%>から</p>
+    <p>アカウント作成は<br><%= link_to "こちら", signup_path%>から</p>
     </div>
    
    <div class="main_img" style="background-image: url(/DSC_0862.JPG)"></div>
@@ -22,7 +22,6 @@
 .top-main {
   position: relative;
   min-height: 100vh;
-  background-image: url("/DSC_0844_Original.jpg");
   background-size: cover;
   overflow: hidden;
   background-position: center center;
@@ -37,6 +36,7 @@
 
  
  .main_img {
+   min-height: 100vh;
     z-index:10;
     opacity: 0;
     width: 100%;
