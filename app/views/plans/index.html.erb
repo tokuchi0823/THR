@@ -8,7 +8,7 @@
     <div class="line-it-button" data-lang="ja" data-type="friend" data-lineid="@595zmbtd" data-count="true" style="display: none;"></div>
      <script src="https://d.line-scdn.net/r/web/social-plugin/js/thirdparty/loader.min.js" async="async" defer="defer"></script>
     </p>
-   <img class="qrcode hidden-xs" src="/595zmbtd.png" >
+   <img class="qrcode hidden-xs box11" src="/595zmbtd.png" >
   </div>
  
 <div class="col-md-9 col-xs-12">
@@ -83,8 +83,8 @@
   <% end %>
    <%= will_paginate %>
   
-  <div class="new-point-button-area">
-  <%= link_to "ツーリングを企画する",new_plan_path,class: "btn btn-lg btn-primary btn-add" %>
+  <div class="new-point-button-area box11">
+  <%= link_to "ツーリングを企画する",new_plan_path,class: "btn btn-lg btn-primary btn-add " %>
   </div>
 </div>
 </div>
@@ -110,5 +110,11 @@
   .picturephone {
     margin-left: 20px;
   }
+}
+
+h1{
+  padding: .5em .75em;
+  background-color: #f6f6f6;
+  border: 3px double #ccc;
 }
 </style>
