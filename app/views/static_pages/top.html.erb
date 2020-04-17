@@ -1,34 +1,23 @@
 <% provide(:title, "Top") %>
-<body class="top-main top-main-for-phone">
-<body class="top-main-for-phone">
+<body class="top-main top-main-for-phone" style="background:white;">
+
  <div class="center jumbotron top-color">
    <div class="overlay">
     <h1>Twenty Hearts Riders</h1>
     <a class="btn btn-lg btn-primary" href="/login">ログイン</a>
     <p>アカウント作成は<br><%= link_to "こちら", signup_path%>から</p>
-    </div>
-   
-   <div class="main_img" style="background-image: url(/DSC_0862.JPG)"></div>
+   </div>
+   <div class="main_img" style="background-image: url(/DSC_0862test.JPG)"></div>
    <div class="main_img" style="background-image: url(/DSC_0844_Original.jpg)"></div>
    <div class="main_img" style="background-image: url(/DSC_0561_Original2.jpg)"></div>
    <div class="main_img" style="background-image: url(1410781462721_Original.JPG)"></div>
    <div class="main_img" style="background-image: url(1410781463698_Original.JPG)"></div>
    <div class="main_img" style="background-image: url(1405941079676_Original.JPG)"></div>
-   </div>
+  </div>
 </body>
 
-
 <style>
-.top-main {
-  position: relative;
-  min-height: 100vh;
-  background-size: cover;
-  overflow: hidden;
-  background-position: center center;
-  //-650px
-  background-repeat: no-repeat;
- }
- 
+
  .main_imgBox {
       height: 680px;
     overflow: hidden;
@@ -50,7 +39,7 @@
     -webkit-animation: anime 36s 0s infinite;
     animation: anime 36s 0s infinite; }
  
-}
+
 
  .main_img:nth-of-type(2) {
       -webkit-animation-delay: 6s;

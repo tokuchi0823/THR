@@ -3,9 +3,7 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 @media screen and (min-width:481px){
 .top-main {
-  position: relative;
   min-height: 100vh;
-  background-image: url("/DSC_0862.JPG");
   background-size: cover;
   background-position: center center;
   //-650px
@@ -17,7 +15,6 @@
 .top-main-for-phone {
   position: relative;
   min-height: 100vh;
-  background-image: url("/DSC_0862.JPG");
   background-size: cover;
   background-position: -650px;
   //-650px
