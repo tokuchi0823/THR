@@ -2,8 +2,103 @@
 <body class="top-main top-main-for-phone">
 <body class="top-main-for-phone">
  <div class="center jumbotron top-color">
+   <div class="overlay">
     <h1>Twenty Hearts Riders</h1>
     <a class="btn btn-lg btn-primary" href="/login">ログイン</a>
     <p>アカウント作成は<%= link_to "こちら", signup_path%>から</p>
- </div>
+    </div>
+   
+   <div class="main_img" style="background-image: url(/DSC_0862.JPG)"></div>
+   <div class="main_img" style="background-image: url(/DSC_0844_Original.jpg)"></div>
+   <div class="main_img" style="background-image: url(/DSC_0561_Original2.jpg)"></div>
+   <div class="main_img" style="background-image: url(1410781462721_Original.JPG)"></div>
+   <div class="main_img" style="background-image: url(1410781463698_Original.JPG)"></div>
+   <div class="main_img" style="background-image: url(1405941079676_Original.JPG)"></div>
+   </div>
 </body>
+
+
+<style>
+.top-main {
+  position: relative;
+  min-height: 100vh;
+  background-image: url("/DSC_0844_Original.jpg");
+  background-size: cover;
+  overflow: hidden;
+  background-position: center center;
+  //-650px
+  background-repeat: no-repeat;
+ }
+ 
+ .main_imgBox {
+      height: 680px;
+    overflow: hidden;
+    position: relative; }
+
+ 
+ .main_img {
+    z-index:10;
+    opacity: 0;
+    width: 100%;
+    height: 680px;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: absolute;
+    left: 0;
+    top: 0;
+    -webkit-animation: anime 36s 0s infinite;
+    animation: anime 36s 0s infinite; }
+ 
+}
+
+ .main_img:nth-of-type(2) {
+      -webkit-animation-delay: 6s;
+      animation-delay: 6s; }
+
+    .main_img:nth-of-type(3) {
+      -webkit-animation-delay: 12s;
+      animation-delay: 12s; }
+
+    .main_img:nth-of-type(4) {
+      -webkit-animation-delay: 18s;
+      animation-delay: 18s; }
+
+    .main_img:nth-of-type(5) {
+      -webkit-animation-delay: 24s;
+      animation-delay: 24s; }
+
+    .main_img:nth-of-type(6) {
+      -webkit-animation-delay: 30s;
+      animation-delay: 30s; }
+
+@keyframes anime {
+  0% {
+        opacity: 0;
+    }
+    8% {
+        opacity: 1;
+    }
+    17% {
+        opacity: 1;
+    }
+    25% {
+        opacity: 0;
+        transform: scale(1.2) ;
+         z-index:9;
+    }
+    100% { opacity: 0 }
+}
+
+  .overlay{
+    z-index:11;
+    position: absolute;
+      top:30%;
+      left:50%;
+      transform:translate(-50%,-50%);
+      width:50%;
+      height:auto;
+  }
+
+ 
+</style>
