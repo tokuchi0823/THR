@@ -97,7 +97,7 @@
     </tr>
   </table>
   <% if current_user.id.to_s == @plan.secretary_id.to_s%>
-    <%= link_to "修正", edit_plan_path(@plan) ,class: "btn btn-primary btn-other"%>
+    <%= link_to "修正", edit_plan_path(@plan) ,class: "btn btn-primary btn-square-shadow"%>
     <% if @plan.deadline_date && Date.current >= @plan.deadline_date %>
      <input class="btn btn-primary btn-other" type="button"  value="こちらのツーリングは締め切られました。" disabled>
   　 <% end %>
@@ -272,4 +272,27 @@ function initMap() {
   background-color: #f6f6f6;
   border: 3px double #ccc;
 }
+
+ .btn-square-shadow {
+  display: inline-block;
+  padding: 0.5em 1em;
+  text-decoration: none;
+  background: #668ad8;/*ボタン色*/
+  color: #FFF;
+  border-bottom: solid 4px #627295;
+  border-radius: 3px;
+  margin-top: 10px;
+}
+.btn-square-shadow:active {
+  /*ボタンを押したとき*/
+  -webkit-transform: translateY(4px);
+  transform: translateY(4px);/*下に動く*/
+  box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.2);/*影を小さく*/
+  border-bottom: none;
+}
+
+.btn-delete{
+ background: red;/*ボタン色*/
+}
+
 </style>

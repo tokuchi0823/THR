@@ -1,13 +1,13 @@
 <%= form_with(model: @user, local: true) do |f| %>
  <%= render 'shared/error_messages', object: @user %>
 
-<div class="col-md-6 col-xs-12">
+<div class="col-md-5 col-xs-12">
    <% if !@user.image? %>
-    <div class="image"><img src="/uploads/Noimage_image.png"  width="100%" style="object-fit: cover; border-radius: 50%;"/></div>
+    <div class="image"><img src="/uploads/Noimage_image.png"  width="200px" style="height: 200px; object-fit: cover; border-radius: 50%; margin-left:80px"/></div>
   <% else %>
-    <div class="image"><%= image_tag @user.image.url, :style =>'width: 400px; height: 400px;object-fit: cover; border-radius: 50%;' %></div>
+    <div class="image"><%= image_tag @user.image.url, :style =>'width: 200px; height: 200px;object-fit: cover; border-radius: 50%; margin-left:80px' %></div>
   <% end %>
-  <h3 style="margin-left:130px;"><%= f.label :image,"ユーザー画像" %></h3>
+  <h3 style="margin-left:100px;"><%= f.label :image,"ユーザー画像" %></h3>
   <%= f.file_field :image, accept: 'image/jpeg,image/gif,image/png' %>
 </div>
 
