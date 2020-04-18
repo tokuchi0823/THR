@@ -137,7 +137,7 @@
        <% if current_user.id == @plan.secretary_id %>
         <br>
         <%= form_for(@plan.sankas.find_by(user_id: sanka.user_id), method: :delete, remote: true) do |f| %>
-         <%= f.submit "参加拒否",  data: { confirm: "参加拒否してよろしいですか？" },class: "btn btn-primary btn-other" %>
+         <%= f.submit "参加拒否",  data: { confirm: "参加拒否してよろしいですか？" },class: "btn btn-primary btn-square-shadow btn-delete" %>
         <% end %>
        <% end %>
   </div>
