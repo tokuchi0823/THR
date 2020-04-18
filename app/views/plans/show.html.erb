@@ -99,11 +99,11 @@
   <% if current_user.id.to_s == @plan.secretary_id.to_s%>
     <%= link_to "修正", edit_plan_path(@plan) ,class: "btn btn-primary btn-square-shadow"%>
     <% if @plan.deadline_date && Date.current >= @plan.deadline_date %>
-     <input class="btn btn-primary btn-other" type="button"  value="こちらのツーリングは締め切られました。" disabled>
+     <input class="btn btn-primary btn-square-shadow" type="button"  value="こちらのツーリングは締め切られました。" disabled>
   　 <% end %>
   <% else %>
     <% if @plan.deadline_date && Date.current >= @plan.deadline_date %>
-     <input class="btn btn-primary btn-other" type="button"  value="こちらのツーリングは締め切られました。" disabled>
+     <input class="btn btn-primary btn-square-shadow" type="button"  value="こちらのツーリングは締め切られました。" disabled>
     <% else %>
      <%= render "sankas/sanka", plan: @plan %>
     <% end %>
